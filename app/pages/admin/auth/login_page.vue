@@ -57,18 +57,6 @@
         >
           {{ isLoading ? "Mengecek..." : "Sign In" }}
         </button>
-        <div>
-          <label class="block text-sm font-bold text-gray-700 mb-2"
-            >Password</label
-          >
-          <input
-            v-model="form.password"
-            type="password"
-            required
-            class="w-full px-4 py-3 rounded-lg border border-gray-300 focus:ring-2 focus:ring-orange-500 focus:border-transparent transition-all"
-            placeholder="••••••••"
-          />
-        </div>
       </form>
     </div>
   </div>
