@@ -447,21 +447,153 @@
 //   isSidebarCollapsed.value = !isSidebarCollapsed.value;
 // };
 
-import { ref, onMounted } from 'vue';
+// import { ref, onMounted } from 'vue';
+// import { useRouter } from 'vue-router';
+// import Swal from 'sweetalert2';
+
+// const router = useRouter();
+// const isSidebarCollapsed = ref(false);
+// const currentAdmin = ref({ name: 'Admin', image_url: '' });
+
+// // Mengambil data admin saat halaman dimuat
+// onMounted(() => {
+//   const savedData = localStorage.getItem('admin_data');
+//   if (savedData) {
+//     currentAdmin.value = JSON.parse(savedData);
+//   }
+// });
+
+// const toggleSidebar = () => {
+//   isSidebarCollapsed.value = !isSidebarCollapsed.value;
+// };
+
+// const goToProfile = () => {
+//   router.push('/admin/auth/admin_profile_page');
+// };
+
+// const handleLogout = () => {
+//   Swal.fire({
+//     title: 'Keluar sistem?',
+//     text: "Anda harus login kembali untuk masuk ke panel admin.",
+//     icon: 'warning',
+//     showCancelButton: true,
+//     confirmButtonColor: '#d33',
+//     cancelButtonColor: '#3085d6',
+//     confirmButtonText: 'Ya, Logout!'
+//   }).then((result) => {
+//     if (result.isConfirmed) {
+//       // Hapus sesi login
+//       localStorage.removeItem('admin_token');
+//       localStorage.removeItem('admin_data');
+//       router.push('/admin/auth/login_page');
+//     }
+//   });
+// };
+
+import { ref, onMounted, onBeforeUnmount } from 'vue';
 import { useRouter } from 'vue-router';
 import Swal from 'sweetalert2';
 
 const router = useRouter();
+const config = useRuntimeConfig();
 const isSidebarCollapsed = ref(false);
 const currentAdmin = ref({ name: 'Admin', image_url: '' });
 
-// Mengambil data admin saat halaman dimuat
+// === WEBSOCKET STATE ===
+let ws = null;
+let reconnectTimer = null;
+
 onMounted(() => {
   const savedData = localStorage.getItem('admin_data');
   if (savedData) {
     currentAdmin.value = JSON.parse(savedData);
+    
+    // Hanya inisiasi WebSocket jika Admin sudah login
+    initWebSocket();
   }
 });
+
+// Membersihkan koneksi saat admin menutup tab/logout
+onBeforeUnmount(() => {
+  if (ws) {
+    ws.close();
+  }
+  clearTimeout(reconnectTimer);
+});
+
+// === LOGIKA WEBSOCKET ===
+const initWebSocket = () => {
+  // Ganti https/http menjadi wss/ws
+  const baseURL = config.public.apiBase || 'https://kecilung-resto.vercel.app';
+  const wsURL = baseURL.replace(/^http/, 'ws') + '/api/ws';
+  
+  ws = new WebSocket(wsURL);
+
+  ws.onopen = () => {
+    console.log("WebSocket Terkoneksi: Menerima Notifikasi Real-time");
+  };
+
+  ws.onmessage = (event) => {
+    try {
+      const data = JSON.parse(event.data);
+      handleNotification(data);
+    } catch (e) {
+      console.error("Gagal membaca pesan WS:", e);
+    }
+  };
+
+  ws.onclose = () => {
+    console.log("WebSocket Terputus. Mencoba reconnect dalam 5 detik...");
+    // Auto Reconnect
+    reconnectTimer = setTimeout(() => {
+      initWebSocket();
+    }, 5000);
+  };
+
+  ws.onerror = (error) => {
+    console.error("WebSocket Error:", error);
+    ws.close(); // Memicu onclose untuk reconnect
+  };
+};
+
+const handleNotification = (data) => {
+  // Putar Suara (Opsional - pastikan file mp3 ada)
+  try {
+    const audio = new Audio('/assets/sounds/notification.mp3');
+    // audio.play();
+  } catch (e) {
+    // Abaikan jika browser memblokir auto-play audio
+  }
+
+  // Tampilkan Pop-up Toast di Kanan Atas
+  const Toast = Swal.mixin({
+    toast: true,
+    position: 'top-end',
+    showConfirmButton: false,
+    timer: 5000, // Hilang dalam 5 detik
+    timerProgressBar: true,
+    didOpen: (toast) => {
+      toast.addEventListener('mouseenter', Swal.stopTimer)
+      toast.addEventListener('mouseleave', Swal.resumeTimer)
+    }
+  });
+
+  // Ganti Ikon dan Warna berdasarkan Tipe Notifikasi
+  let iconHtml = '';
+  if (data.type === 'NEW_CATERING_BOOKING' || data.type === 'NEW_MOMENT_BOOKING') {
+    iconHtml = '📅'; // Ikon Kalender
+  } else if (data.type === 'NEW_CONTACT_MSG') {
+    iconHtml = '💬'; // Ikon Pesan
+  }
+
+  Toast.fire({
+    iconHtml: `<span style="font-size: 24px;">${iconHtml}</span>`,
+    title: 'Pemberitahuan Baru!',
+    text: data.message,
+    background: '#fff7ed', // orange-50
+    color: '#9a3412'       // orange-800
+  });
+};
 
 const toggleSidebar = () => {
   isSidebarCollapsed.value = !isSidebarCollapsed.value;
@@ -482,7 +614,7 @@ const handleLogout = () => {
     confirmButtonText: 'Ya, Logout!'
   }).then((result) => {
     if (result.isConfirmed) {
-      // Hapus sesi login
+      if (ws) ws.close(); // Tutup WS saat logout
       localStorage.removeItem('admin_token');
       localStorage.removeItem('admin_data');
       router.push('/admin/auth/login_page');
