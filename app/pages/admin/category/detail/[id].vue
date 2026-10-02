@@ -55,7 +55,7 @@ definePageMeta({ layout: "admin", middleware: "auth" });
 
 const route = useRoute();
 const id = route.params.id;
-const baseURL = "https://kecilung-resto.vercel.app/api";
+const baseURL = "http://31.97.60.207:8246/api";
 
 // Ambil semua kategori untuk mencari detail berdasarkan ID (karena belum ada endpoint get by id khusus di Go)
 const { data: resCat, pending: pendingCat } = await useFetch(

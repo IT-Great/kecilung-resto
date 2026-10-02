@@ -44,7 +44,10 @@
           />
           <!-- TAMBAH INI -->
           <div class="text-right mt-2">
-            <NuxtLink to="/admin/auth/forgot_password_page" class="text-sm text-orange-600 hover:text-orange-800 font-semibold transition-colors">
+            <NuxtLink
+              to="/admin/auth/forgot_password_page"
+              class="text-sm text-orange-600 hover:text-orange-800 font-semibold transition-colors"
+            >
               Forgot Password?
             </NuxtLink>
           </div>
@@ -82,8 +85,7 @@ const form = ref({
 const handleLogin = async () => {
   isLoading.value = true;
   try {
-    const baseURL =
-      config.public.apiBase || "https://kecilung-resto.vercel.app";
+    const baseURL = config.public.apiBase || "http://31.97.60.207:8246";
     const res = await $fetch(`${baseURL}/api/auth/login`, {
       method: "POST",
       body: form.value,

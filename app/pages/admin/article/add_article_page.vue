@@ -105,7 +105,7 @@ const submitArticle = async () => {
 
   try {
     await $fetch(
-      `${config.public.apiBase || "https://kecilung-resto.vercel.app"}/api/articles`,
+      `${config.public.apiBase || "http://31.97.60.207:8246"}/api/articles`,
       {
         method: "POST",
         body: formData,

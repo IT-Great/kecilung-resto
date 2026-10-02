@@ -73,7 +73,7 @@ const articles = ref([]);
 const fetchArticles = async () => {
   try {
     const res = await $fetch(
-      `${config.public.apiBase || "https://kecilung-resto.vercel.app"}/api/articles`,
+      `${config.public.apiBase || "http://31.97.60.207:8246"}/api/articles`,
     );
     articles.value = res.data || [];
   } catch (error) {
@@ -95,7 +95,7 @@ const confirmDelete = (id) => {
     if (result.isConfirmed) {
       try {
         await $fetch(
-          `${config.public.apiBase || "https://kecilung-resto.vercel.app"}/api/articles/${id}`,
+          `${config.public.apiBase || "http://31.97.60.207:8246"}/api/articles/${id}`,
           { method: "DELETE" },
         );
         Swal.fire("Terhapus!", "Artikel berhasil dihapus.", "success");
@@ -114,7 +114,9 @@ onMounted(() => {
 
 <template>
   <div class="p-6">
-    <div class="flex flex-col md:flex-row justify-between items-start md:items-center mb-6 gap-4">
+    <div
+      class="flex flex-col md:flex-row justify-between items-start md:items-center mb-6 gap-4"
+    >
       <h1 class="text-2xl font-bold text-gray-800">Manajemen Artikel</h1>
       <NuxtLink
         to="/admin/article/add_article_page"
@@ -125,11 +127,16 @@ onMounted(() => {
     </div>
 
     <!-- FILTER BAR (Search & Items per page) -->
-    <div class="bg-white p-4 rounded-t shadow-sm border-b border-gray-100 flex flex-col sm:flex-row justify-between items-center gap-4">
+    <div
+      class="bg-white p-4 rounded-t shadow-sm border-b border-gray-100 flex flex-col sm:flex-row justify-between items-center gap-4"
+    >
       <!-- Items Per Page Dropdown -->
       <div class="flex items-center gap-2 text-sm text-gray-600">
         <span>Tampilkan</span>
-        <select v-model="itemsPerPage" class="border border-gray-300 rounded px-2 py-1 focus:ring-blue-500 focus:border-blue-500 outline-none">
+        <select
+          v-model="itemsPerPage"
+          class="border border-gray-300 rounded px-2 py-1 focus:ring-blue-500 focus:border-blue-500 outline-none"
+        >
           <option :value="5">5</option>
           <option :value="10">10</option>
           <option :value="25">25</option>
@@ -141,14 +148,25 @@ onMounted(() => {
 
       <!-- Search Bar -->
       <div class="relative w-full sm:w-64">
-        <input 
-          v-model="searchQuery" 
-          type="text" 
-          placeholder="Cari kode, nama, deskripsi..." 
+        <input
+          v-model="searchQuery"
+          type="text"
+          placeholder="Cari kode, nama, deskripsi..."
           class="w-full pl-10 pr-4 py-2 border border-gray-300 rounded focus:ring-2 focus:ring-blue-500 focus:border-transparent outline-none text-sm transition-all"
         />
-        <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 text-gray-400 absolute left-3 top-1/2 transform -translate-y-1/2" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-          <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z" />
+        <svg
+          xmlns="http://www.w3.org/2000/svg"
+          class="h-5 w-5 text-gray-400 absolute left-3 top-1/2 transform -translate-y-1/2"
+          fill="none"
+          viewBox="0 0 24 24"
+          stroke="currentColor"
+        >
+          <path
+            stroke-linecap="round"
+            stroke-linejoin="round"
+            stroke-width="2"
+            d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z"
+          />
         </svg>
       </div>
     </div>
@@ -167,12 +185,26 @@ onMounted(() => {
         <tbody>
           <!-- PERBAIKAN: Pisahkan v-if dan v-for menggunakan tag <template> -->
           <template v-if="isLoading">
-            <tr v-for="n in 5" :key="'skel-' + n" class="animate-pulse hover:bg-gray-50 border-b">
-              <td class="p-3"><div class="h-4 bg-gray-200 rounded w-8"></div></td>
-              <td class="p-3"><div class="h-4 bg-gray-200 rounded w-16"></div></td>
-              <td class="p-3"><div class="h-4 bg-gray-200 rounded w-48"></div></td>
-              <td class="p-3"><div class="h-4 bg-gray-200 rounded w-64"></div></td>
-              <td class="p-3"><div class="h-4 bg-gray-200 rounded w-24 mx-auto"></div></td>
+            <tr
+              v-for="n in 5"
+              :key="'skel-' + n"
+              class="animate-pulse hover:bg-gray-50 border-b"
+            >
+              <td class="p-3">
+                <div class="h-4 bg-gray-200 rounded w-8"></div>
+              </td>
+              <td class="p-3">
+                <div class="h-4 bg-gray-200 rounded w-16"></div>
+              </td>
+              <td class="p-3">
+                <div class="h-4 bg-gray-200 rounded w-48"></div>
+              </td>
+              <td class="p-3">
+                <div class="h-4 bg-gray-200 rounded w-64"></div>
+              </td>
+              <td class="p-3">
+                <div class="h-4 bg-gray-200 rounded w-24 mx-auto"></div>
+              </td>
             </tr>
           </template>
 
@@ -191,9 +223,13 @@ onMounted(() => {
               class="hover:bg-gray-50 border-b transition-colors"
             >
               <!-- Perhitungan No urut agar sesuai dengan pagination -->
-              <td class="p-3">{{ ((currentPage - 1) * itemsPerPage) + index + 1 }}</td>
+              <td class="p-3">
+                {{ (currentPage - 1) * itemsPerPage + index + 1 }}
+              </td>
               <td class="p-3 font-semibold">
-                <span class="bg-gray-100 px-2 py-1 rounded text-xs">{{ item.code }}</span>
+                <span class="bg-gray-100 px-2 py-1 rounded text-xs">{{
+                  item.code
+                }}</span>
               </td>
               <td class="p-3">{{ item.name }}</td>
               <td class="p-3 truncate max-w-xs">{{ item.description }}</td>
@@ -201,15 +237,19 @@ onMounted(() => {
                 <NuxtLink
                   :to="`/admin/article/detail/${item.id}`"
                   class="text-green-600 hover:text-green-800 bg-green-50 px-2 py-1 rounded"
-                >Detail</NuxtLink>
+                  >Detail</NuxtLink
+                >
                 <NuxtLink
                   :to="`/admin/article/edit/${item.id}`"
                   class="text-blue-600 hover:text-blue-800 bg-blue-50 px-2 py-1 rounded"
-                >Edit</NuxtLink>
+                  >Edit</NuxtLink
+                >
                 <button
                   @click="confirmDelete(item.id)"
                   class="text-red-600 hover:text-red-800 bg-red-50 px-2 py-1 rounded"
-                >Hapus</button>
+                >
+                  Hapus
+                </button>
               </td>
             </tr>
           </template>
@@ -218,14 +258,22 @@ onMounted(() => {
     </div>
 
     <!-- PAGINATION FOOTER -->
-    <div class="bg-white p-4 rounded-b shadow-sm flex flex-col md:flex-row justify-between items-center gap-4 text-sm text-gray-600 border-t border-gray-100 mt-0">
+    <div
+      class="bg-white p-4 rounded-b shadow-sm flex flex-col md:flex-row justify-between items-center gap-4 text-sm text-gray-600 border-t border-gray-100 mt-0"
+    >
       <div>
-        Showing <span class="font-bold text-gray-900">{{ showingStart }}</span> to <span class="font-bold text-gray-900">{{ showingEnd }}</span> of <span class="font-bold text-gray-900">{{ filteredArticles.length }}</span> items
+        Showing
+        <span class="font-bold text-gray-900">{{ showingStart }}</span> to
+        <span class="font-bold text-gray-900">{{ showingEnd }}</span> of
+        <span class="font-bold text-gray-900">{{
+          filteredArticles.length
+        }}</span>
+        items
       </div>
 
       <div class="flex items-center space-x-1" v-if="totalPages > 1">
-        <button 
-          @click="currentPage--" 
+        <button
+          @click="currentPage--"
           :disabled="currentPage === 1"
           class="px-3 py-1.5 border border-gray-300 rounded hover:bg-gray-50 disabled:opacity-50 disabled:cursor-not-allowed transition"
         >
@@ -233,23 +281,25 @@ onMounted(() => {
         </button>
 
         <template v-for="(pageItem, index) in paginationArray" :key="index">
-          <span v-if="pageItem === '...'" class="px-2 py-1.5 text-gray-400">...</span>
-          <button 
+          <span v-if="pageItem === '...'" class="px-2 py-1.5 text-gray-400"
+            >...</span
+          >
+          <button
             v-else
             @click="currentPage = pageItem"
             :class="[
               'px-3 py-1.5 border rounded transition',
-              currentPage === pageItem 
-                ? 'bg-blue-600 text-white border-blue-600 font-bold' 
-                : 'border-gray-300 text-gray-700 hover:bg-gray-50'
+              currentPage === pageItem
+                ? 'bg-blue-600 text-white border-blue-600 font-bold'
+                : 'border-gray-300 text-gray-700 hover:bg-gray-50',
             ]"
           >
             {{ pageItem }}
           </button>
         </template>
 
-        <button 
-          @click="currentPage++" 
+        <button
+          @click="currentPage++"
           :disabled="currentPage === totalPages"
           class="px-3 py-1.5 border border-gray-300 rounded hover:bg-gray-50 disabled:opacity-50 disabled:cursor-not-allowed transition"
         >
@@ -257,7 +307,6 @@ onMounted(() => {
         </button>
       </div>
     </div>
-
   </div>
 </template>
 
@@ -272,7 +321,7 @@ const allArticles = ref([]);
 const isLoading = ref(true);
 
 // --- STATE FILTER & PAGINATION ---
-const searchQuery = ref('');
+const searchQuery = ref("");
 const itemsPerPage = ref(10);
 const currentPage = ref(1);
 
@@ -284,31 +333,44 @@ watch([searchQuery, itemsPerPage], () => {
 const filteredArticles = computed(() => {
   if (!searchQuery.value) return allArticles.value;
   const q = searchQuery.value.toLowerCase();
-  return allArticles.value.filter(item => 
-    item.name.toLowerCase().includes(q) || 
-    item.code.toLowerCase().includes(q) ||
-    item.description.toLowerCase().includes(q)
+  return allArticles.value.filter(
+    (item) =>
+      item.name.toLowerCase().includes(q) ||
+      item.code.toLowerCase().includes(q) ||
+      item.description.toLowerCase().includes(q),
   );
 });
 
 // --- LOGIKA PAGINATION ---
-const totalPages = computed(() => Math.ceil(filteredArticles.value.length / itemsPerPage.value));
+const totalPages = computed(() =>
+  Math.ceil(filteredArticles.value.length / itemsPerPage.value),
+);
 
 const paginatedArticles = computed(() => {
   const start = (currentPage.value - 1) * itemsPerPage.value;
   return filteredArticles.value.slice(start, start + itemsPerPage.value);
 });
 
-const showingStart = computed(() => filteredArticles.value.length === 0 ? 0 : ((currentPage.value - 1) * itemsPerPage.value) + 1);
-const showingEnd = computed(() => Math.min(currentPage.value * itemsPerPage.value, filteredArticles.value.length));
+const showingStart = computed(() =>
+  filteredArticles.value.length === 0
+    ? 0
+    : (currentPage.value - 1) * itemsPerPage.value + 1,
+);
+const showingEnd = computed(() =>
+  Math.min(
+    currentPage.value * itemsPerPage.value,
+    filteredArticles.value.length,
+  ),
+);
 
 const paginationArray = computed(() => {
   const current = currentPage.value;
   const total = totalPages.value;
   if (total <= 7) return Array.from({ length: total }, (_, i) => i + 1);
-  if (current <= 4) return [1, 2, 3, 4, 5, '...', total];
-  if (current >= total - 3) return [1, '...', total - 4, total - 3, total - 2, total - 1, total];
-  return [1, '...', current - 1, current, current + 1, '...', total];
+  if (current <= 4) return [1, 2, 3, 4, 5, "...", total];
+  if (current >= total - 3)
+    return [1, "...", total - 4, total - 3, total - 2, total - 1, total];
+  return [1, "...", current - 1, current, current + 1, "...", total];
 });
 
 // --- API ACTIONS ---
@@ -316,7 +378,7 @@ const fetchArticles = async () => {
   isLoading.value = true;
   try {
     const res = await $fetch(
-      `${config.public.apiBase || "https://kecilung-resto.vercel.app"}/api/articles`,
+      `${config.public.apiBase || "http://31.97.60.207:8246"}/api/articles`,
     );
     allArticles.value = res.data || [];
   } catch (error) {
@@ -340,7 +402,7 @@ const confirmDelete = (id) => {
     if (result.isConfirmed) {
       try {
         await $fetch(
-          `${config.public.apiBase || "https://kecilung-resto.vercel.app"}/api/articles/${id}`,
+          `${config.public.apiBase || "http://31.97.60.207:8246"}/api/articles/${id}`,
           { method: "DELETE" },
         );
         Swal.fire("Terhapus!", "Artikel berhasil dihapus.", "success");

@@ -93,7 +93,7 @@
 </template>
 
 <script setup>
-const baseURL = "https://kecilung-resto.vercel.app/api";
+const baseURL = "http://31.97.60.207:8246/api";
 const { data: response, pending } = useFetch(`${baseURL}/categories`, {
   lazy: import.meta.client
 });
@@ -202,7 +202,7 @@ const categories = computed(() => response.value?.data || []);
 </template>
 
 <script setup>
-const baseURL = "https://kecilung-resto.vercel.app/api";
+const baseURL = "http://31.97.60.207:8246/api";
 
 // Fetch data kategori
 const { data: response, pending } = useFetch(`${baseURL}/categories`, {
@@ -326,7 +326,7 @@ onMounted(() => {
 </template>
 
 <script setup>
-const baseURL = "https://kecilung-resto.vercel.app/api";
+const baseURL = "http://31.97.60.207:8246/api";
 
 // Fetch data kategori
 const { data: response, pending } = useFetch(`${baseURL}/categories`, {
@@ -354,37 +354,74 @@ onMounted(() => {
     Hal ini penting karena 'fixed' akan membuat header melayang, 
     dan kita butuh elemen ini agar konten di bawahnya tidak tertimpa/naik ke atas.
   -->
-  <div class="h-[88px]"> <!-- Tinggi kira-kira dari header Anda -->
-    <header class="bg-white shadow-sm border-b border-gray-100 fixed top-0 left-0 w-full z-50">
-      <div class="container mx-auto px-4 py-4 flex justify-between items-center">
+  <div class="h-[88px]">
+    <!-- Tinggi kira-kira dari header Anda -->
+    <header
+      class="bg-white shadow-sm border-b border-gray-100 fixed top-0 left-0 w-full z-50"
+    >
+      <div
+        class="container mx-auto px-4 py-4 flex justify-between items-center"
+      >
         <!-- Brand / Logo Gambar -->
         <NuxtLink to="/">
-          <img src="/assets/images/kecilung_logo.webp" alt="Kecilung Resto" class="h-12 w-auto object-contain" />
+          <img
+            src="/assets/images/kecilung_logo.webp"
+            alt="Kecilung Resto"
+            class="h-12 w-auto object-contain"
+          />
         </NuxtLink>
 
         <!-- Desktop Navigation -->
         <nav class="hidden md:flex space-x-8 items-center font-medium">
-          <NuxtLink to="/" class="text-red-800 hover:text-red-600 transition-colors">Home</NuxtLink>
-          <NuxtLink to="/about" class="text-red-800 hover:text-red-600 transition-colors">About Us</NuxtLink>
+          <NuxtLink
+            to="/"
+            class="text-red-800 hover:text-red-600 transition-colors"
+            >Home</NuxtLink
+          >
+          <NuxtLink
+            to="/about"
+            class="text-red-800 hover:text-red-600 transition-colors"
+            >About Us</NuxtLink
+          >
 
           <!-- Dropdown: Our Menu Dinamis (Desktop) -->
           <div class="relative group py-4">
-            <button class="text-red-800 flex items-center gap-1 hover:text-red-600 transition-colors focus:outline-none">
+            <button
+              class="text-red-800 flex items-center gap-1 hover:text-red-600 transition-colors focus:outline-none"
+            >
               Our Menu
-              <svg xmlns="http://www.w3.org/2000/svg" class="h-4 w-4 transition-transform duration-200 group-hover:rotate-180" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7" />
+              <svg
+                xmlns="http://www.w3.org/2000/svg"
+                class="h-4 w-4 transition-transform duration-200 group-hover:rotate-180"
+                fill="none"
+                viewBox="0 0 24 24"
+                stroke="currentColor"
+              >
+                <path
+                  stroke-linecap="round"
+                  stroke-linejoin="round"
+                  stroke-width="2"
+                  d="M19 9l-7 7-7-7"
+                />
               </svg>
             </button>
-            
-            <div class="absolute left-0 mt-4 w-52 bg-white rounded-md shadow-lg border border-gray-100 opacity-0 invisible group-hover:opacity-100 group-hover:visible transition-all duration-300 transform translate-y-2 group-hover:translate-y-0 z-50 overflow-hidden">
+
+            <div
+              class="absolute left-0 mt-4 w-52 bg-white rounded-md shadow-lg border border-gray-100 opacity-0 invisible group-hover:opacity-100 group-hover:visible transition-all duration-300 transform translate-y-2 group-hover:translate-y-0 z-50 overflow-hidden"
+            >
               <div class="py-2">
-                <div v-if="pending" class="px-4 py-2 text-sm text-gray-400 italic">Memuat kategori...</div>
-                
-                <NuxtLink 
+                <div
+                  v-if="pending"
+                  class="px-4 py-2 text-sm text-gray-400 italic"
+                >
+                  Memuat kategori...
+                </div>
+
+                <NuxtLink
                   v-else
-                  v-for="cat in categories" 
+                  v-for="cat in categories"
                   :key="cat.id"
-                  :to="`/menu/category/${cat.id}`" 
+                  :to="`/menu/category/${cat.id}`"
                   class="block px-4 py-2 text-sm text-gray-700 hover:bg-red-50 hover:text-red-700 transition-colors"
                 >
                   {{ cat.name }}
@@ -393,62 +430,138 @@ onMounted(() => {
             </div>
           </div>
 
-          <NuxtLink to="/catering" class="text-red-800 hover:text-red-600 transition-colors">Catering</NuxtLink>
-          <NuxtLink to="/moment" class="text-red-800 hover:text-red-600 transition-colors">Moment</NuxtLink>
-          <NuxtLink to="/article" class="text-red-800 hover:text-red-600 transition-colors">Articles</NuxtLink>
-          <NuxtLink to="/contact" class="text-red-800 hover:text-red-600 transition-colors">Contact Us</NuxtLink>
+          <NuxtLink
+            to="/catering"
+            class="text-red-800 hover:text-red-600 transition-colors"
+            >Catering</NuxtLink
+          >
+          <NuxtLink
+            to="/moment"
+            class="text-red-800 hover:text-red-600 transition-colors"
+            >Moment</NuxtLink
+          >
+          <NuxtLink
+            to="/article"
+            class="text-red-800 hover:text-red-600 transition-colors"
+            >Articles</NuxtLink
+          >
+          <NuxtLink
+            to="/contact"
+            class="text-red-800 hover:text-red-600 transition-colors"
+            >Contact Us</NuxtLink
+          >
         </nav>
 
         <!-- Hamburger Button (Mobile) -->
-        <button @click="isMobileMenuOpen = true" class="md:hidden flex items-center text-red-800 hover:text-red-600 focus:outline-none transition-colors">
-          <svg xmlns="http://www.w3.org/2000/svg" class="h-8 w-8" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16" />
+        <button
+          @click="isMobileMenuOpen = true"
+          class="md:hidden flex items-center text-red-800 hover:text-red-600 focus:outline-none transition-colors"
+        >
+          <svg
+            xmlns="http://www.w3.org/2000/svg"
+            class="h-8 w-8"
+            fill="none"
+            viewBox="0 0 24 24"
+            stroke="currentColor"
+          >
+            <path
+              stroke-linecap="round"
+              stroke-linejoin="round"
+              stroke-width="2"
+              d="M4 6h16M4 12h16M4 18h16"
+            />
           </svg>
         </button>
       </div>
 
       <!-- Mobile Sidebar Overlay -->
-      <div 
-        v-if="isMobileMenuOpen" 
-        @click="isMobileMenuOpen = false" 
+      <div
+        v-if="isMobileMenuOpen"
+        @click="isMobileMenuOpen = false"
         class="fixed inset-0 bg-black/40 z-40 md:hidden backdrop-blur-sm transition-opacity"
       ></div>
 
       <!-- Mobile Sidebar Panel -->
-      <div 
-        :class="isMobileMenuOpen ? 'translate-x-0' : 'translate-x-full'" 
+      <div
+        :class="isMobileMenuOpen ? 'translate-x-0' : 'translate-x-full'"
         class="fixed top-0 right-0 h-full w-72 bg-white shadow-2xl z-50 transform transition-transform duration-300 ease-in-out md:hidden flex flex-col overflow-y-auto"
       >
         <!-- Close Button -->
         <div class="flex justify-end p-6 border-b border-gray-100">
-          <button @click="isMobileMenuOpen = false" class="text-red-800 hover:text-red-600 focus:outline-none transition-colors">
-            <svg xmlns="http://www.w3.org/2000/svg" class="h-8 w-8" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12" />
+          <button
+            @click="isMobileMenuOpen = false"
+            class="text-red-800 hover:text-red-600 focus:outline-none transition-colors"
+          >
+            <svg
+              xmlns="http://www.w3.org/2000/svg"
+              class="h-8 w-8"
+              fill="none"
+              viewBox="0 0 24 24"
+              stroke="currentColor"
+            >
+              <path
+                stroke-linecap="round"
+                stroke-linejoin="round"
+                stroke-width="2"
+                d="M6 18L18 6M6 6l12 12"
+              />
             </svg>
           </button>
         </div>
 
         <!-- Mobile Navigation Links -->
-        <nav class="flex flex-col p-6 space-y-6 text-lg font-medium text-red-800">
-          <NuxtLink to="/" @click="isMobileMenuOpen = false" class="hover:text-red-600 transition-colors">Home</NuxtLink>
-          <NuxtLink to="/about" @click="isMobileMenuOpen = false" class="hover:text-red-600 transition-colors">About Us</NuxtLink>
+        <nav
+          class="flex flex-col p-6 space-y-6 text-lg font-medium text-red-800"
+        >
+          <NuxtLink
+            to="/"
+            @click="isMobileMenuOpen = false"
+            class="hover:text-red-600 transition-colors"
+            >Home</NuxtLink
+          >
+          <NuxtLink
+            to="/about"
+            @click="isMobileMenuOpen = false"
+            class="hover:text-red-600 transition-colors"
+            >About Us</NuxtLink
+          >
 
           <!-- Dropdown / Accordion: Our Menu (Mobile) -->
           <div class="flex flex-col">
-            <button @click="isMobileMenuDropdownOpen = !isMobileMenuDropdownOpen" class="flex items-center justify-between hover:text-red-600 transition-colors focus:outline-none w-full text-left">
+            <button
+              @click="isMobileMenuDropdownOpen = !isMobileMenuDropdownOpen"
+              class="flex items-center justify-between hover:text-red-600 transition-colors focus:outline-none w-full text-left"
+            >
               Our Menu
-              <svg xmlns="http://www.w3.org/2000/svg" :class="{'rotate-180': isMobileMenuDropdownOpen}" class="h-5 w-5 transition-transform duration-300" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7" />
+              <svg
+                xmlns="http://www.w3.org/2000/svg"
+                :class="{ 'rotate-180': isMobileMenuDropdownOpen }"
+                class="h-5 w-5 transition-transform duration-300"
+                fill="none"
+                viewBox="0 0 24 24"
+                stroke="currentColor"
+              >
+                <path
+                  stroke-linecap="round"
+                  stroke-linejoin="round"
+                  stroke-width="2"
+                  d="M19 9l-7 7-7-7"
+                />
               </svg>
             </button>
-            
-            <div v-show="isMobileMenuDropdownOpen" class="flex flex-col mt-3 pl-4 space-y-3 border-l-2 border-red-200 overflow-hidden">
-              <div v-if="pending" class="text-sm text-gray-400 italic">Memuat...</div>
-              <NuxtLink 
+
+            <div
+              v-show="isMobileMenuDropdownOpen"
+              class="flex flex-col mt-3 pl-4 space-y-3 border-l-2 border-red-200 overflow-hidden"
+            >
+              <div v-if="pending" class="text-sm text-gray-400 italic">
+                Memuat...
+              </div>
+              <NuxtLink
                 v-else
-                v-for="cat in categories" 
+                v-for="cat in categories"
                 :key="cat.id"
-                :to="`/menu/category/${cat.id}`" 
+                :to="`/menu/category/${cat.id}`"
                 @click="isMobileMenuOpen = false"
                 class="text-base text-gray-600 hover:text-red-600 transition-colors"
               >
@@ -457,10 +570,30 @@ onMounted(() => {
             </div>
           </div>
 
-          <NuxtLink to="/catering" @click="isMobileMenuOpen = false" class="hover:text-red-600 transition-colors">Catering</NuxtLink>
-          <NuxtLink to="/moment" @click="isMobileMenuOpen = false" class="hover:text-red-600 transition-colors">Moment</NuxtLink>
-          <NuxtLink to="/article" @click="isMobileMenuOpen = false" class="hover:text-red-600 transition-colors">Articles</NuxtLink>
-          <NuxtLink to="/contact" @click="isMobileMenuOpen = false" class="hover:text-red-600 transition-colors">Contact Us</NuxtLink>
+          <NuxtLink
+            to="/catering"
+            @click="isMobileMenuOpen = false"
+            class="hover:text-red-600 transition-colors"
+            >Catering</NuxtLink
+          >
+          <NuxtLink
+            to="/moment"
+            @click="isMobileMenuOpen = false"
+            class="hover:text-red-600 transition-colors"
+            >Moment</NuxtLink
+          >
+          <NuxtLink
+            to="/article"
+            @click="isMobileMenuOpen = false"
+            class="hover:text-red-600 transition-colors"
+            >Articles</NuxtLink
+          >
+          <NuxtLink
+            to="/contact"
+            @click="isMobileMenuOpen = false"
+            class="hover:text-red-600 transition-colors"
+            >Contact Us</NuxtLink
+          >
         </nav>
       </div>
     </header>
@@ -468,11 +601,11 @@ onMounted(() => {
 </template>
 
 <script setup>
-const baseURL = "https://kecilung-resto.vercel.app/api";
+const baseURL = "http://31.97.60.207:8246/api";
 
 // Fetch data kategori
 const { data: response, pending } = useFetch(`${baseURL}/categories`, {
-  lazy: import.meta.client
+  lazy: import.meta.client,
 });
 const categories = computed(() => response.value?.data || []);
 
@@ -482,7 +615,7 @@ const isMobileMenuDropdownOpen = ref(false);
 
 // Menutup sidebar otomatis jika layar membesar (pindah orientasi tablet/desktop)
 onMounted(() => {
-  window.addEventListener('resize', () => {
+  window.addEventListener("resize", () => {
     if (window.innerWidth >= 768) {
       isMobileMenuOpen.value = false;
     }

@@ -59,7 +59,7 @@ const article = ref(null);
 const fetchDetail = async () => {
   try {
     const res = await $fetch(
-      `${config.public.apiBase || "https://kecilung-resto.vercel.app"}/api/articles/${articleId}`,
+      `${config.public.apiBase || "http://31.97.60.207:8246"}/api/articles/${articleId}`,
     );
     article.value = res.data;
   } catch (error) {

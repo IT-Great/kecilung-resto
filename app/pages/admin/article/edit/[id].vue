@@ -90,7 +90,7 @@ const articleId = route.params.id;
 const fetchDetail = async () => {
   try {
     const res = await $fetch(
-      `${config.public.apiBase || "https://kecilung-resto.vercel.app"}/api/articles/${articleId}`,
+      `${config.public.apiBase || "http://31.97.60.207:8246"}/api/articles/${articleId}`,
     );
     form.value.code = res.data.code;
     form.value.name = res.data.name;
@@ -118,7 +118,7 @@ const updateArticle = async () => {
 
   try {
     await $fetch(
-      `${config.public.apiBase || "https://kecilung-resto.vercel.app"}/api/articles/${articleId}`,
+      `${config.public.apiBase || "http://31.97.60.207:8246"}/api/articles/${articleId}`,
       {
         method: "PUT",
         body: formData,

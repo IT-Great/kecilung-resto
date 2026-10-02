@@ -152,7 +152,7 @@ definePageMeta({
   layout: "admin",
 });
 
-const baseURL = "https://kecilung-resto.vercel.app/api";
+const baseURL = "http://31.97.60.207:8246/api";
 const {
   data: response,
   pending,
@@ -266,7 +266,7 @@ const deleteCategory = async (id) => {
 <script setup>
 definePageMeta({ layout: "admin" });
 
-const baseURL = "https://kecilung-resto.vercel.app/api";
+const baseURL = "http://31.97.60.207:8246/api";
 
 // PERUBAHAN: Gunakan useLazyFetch tanpa "await"
 const { data: response, pending, refresh } = useLazyFetch(`${baseURL}/categories`);
@@ -412,7 +412,7 @@ import Swal from 'sweetalert2'; // Import SweetAlert2
 
 definePageMeta({ layout: "admin" });
 
-const baseURL = "https://kecilung-resto.vercel.app/api";
+const baseURL = "http://31.97.60.207:8246/api";
 
 const { data: response, pending, refresh } = useLazyFetch(`${baseURL}/categories`);
 const categories = computed(() => response.value?.data || []);
@@ -604,7 +604,7 @@ import Swal from 'sweetalert2';
 
 definePageMeta({ layout: "admin", middleware: "auth" });
 
-const baseURL = "https://kecilung-resto.vercel.app/api";
+const baseURL = "http://31.97.60.207:8246/api";
 
 const { data: response, pending, refresh } = useLazyFetch(`${baseURL}/categories`);
 const categories = computed(() => response.value?.data || []);
@@ -708,19 +708,29 @@ const deleteCategory = async (id) => {
 
 <template>
   <div class="container mx-auto p-6 max-w-6xl">
-    <div class="flex flex-col md:flex-row justify-between items-start md:items-center mb-6 gap-4">
+    <div
+      class="flex flex-col md:flex-row justify-between items-start md:items-center mb-6 gap-4"
+    >
       <h1 class="text-3xl font-bold text-gray-800">Manajemen Kategori</h1>
-      <button @click="openModal('add')" class="bg-orange-500 hover:bg-orange-600 text-white px-4 py-2 rounded-lg font-medium transition whitespace-nowrap">
+      <button
+        @click="openModal('add')"
+        class="bg-orange-500 hover:bg-orange-600 text-white px-4 py-2 rounded-lg font-medium transition whitespace-nowrap"
+      >
         + Tambah Kategori
       </button>
     </div>
 
     <!-- FILTER BAR (Search & Items per page) -->
-    <div class="bg-white p-4 rounded-t-lg shadow-sm border-b border-gray-100 flex flex-col sm:flex-row justify-between items-center gap-4">
+    <div
+      class="bg-white p-4 rounded-t-lg shadow-sm border-b border-gray-100 flex flex-col sm:flex-row justify-between items-center gap-4"
+    >
       <!-- Items Per Page Dropdown -->
       <div class="flex items-center gap-2 text-sm text-gray-600">
         <span>Tampilkan</span>
-        <select v-model="itemsPerPage" class="border border-gray-300 rounded px-2 py-1 focus:ring-orange-500 focus:border-orange-500 outline-none">
+        <select
+          v-model="itemsPerPage"
+          class="border border-gray-300 rounded px-2 py-1 focus:ring-orange-500 focus:border-orange-500 outline-none"
+        >
           <option :value="5">5</option>
           <option :value="10">10</option>
           <option :value="25">25</option>
@@ -732,14 +742,25 @@ const deleteCategory = async (id) => {
 
       <!-- Search Bar -->
       <div class="relative w-full sm:w-64">
-        <input 
-          v-model="searchQuery" 
-          type="text" 
-          placeholder="Cari kode atau nama..." 
+        <input
+          v-model="searchQuery"
+          type="text"
+          placeholder="Cari kode atau nama..."
           class="w-full pl-10 pr-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-orange-500 focus:border-transparent outline-none text-sm transition-all"
         />
-        <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 text-gray-400 absolute left-3 top-1/2 transform -translate-y-1/2" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-          <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z" />
+        <svg
+          xmlns="http://www.w3.org/2000/svg"
+          class="h-5 w-5 text-gray-400 absolute left-3 top-1/2 transform -translate-y-1/2"
+          fill="none"
+          viewBox="0 0 24 24"
+          stroke="currentColor"
+        >
+          <path
+            stroke-linecap="round"
+            stroke-linejoin="round"
+            stroke-width="2"
+            d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z"
+          />
         </svg>
       </div>
     </div>
@@ -749,20 +770,49 @@ const deleteCategory = async (id) => {
       <table class="min-w-full divide-y divide-gray-200">
         <thead class="bg-gray-50">
           <tr>
-            <th class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Gambar</th>
-            <th class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Kode</th>
-            <th class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Nama</th>
-            <th class="px-6 py-3 text-center text-xs font-medium text-gray-500 uppercase tracking-wider">Aksi</th>
+            <th
+              class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider"
+            >
+              Gambar
+            </th>
+            <th
+              class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider"
+            >
+              Kode
+            </th>
+            <th
+              class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider"
+            >
+              Nama
+            </th>
+            <th
+              class="px-6 py-3 text-center text-xs font-medium text-gray-500 uppercase tracking-wider"
+            >
+              Aksi
+            </th>
           </tr>
         </thead>
         <tbody class="bg-white divide-y divide-gray-200">
-          
           <template v-if="pending">
-            <tr v-for="n in 4" :key="'skel-cat-' + n" class="animate-pulse hover:bg-gray-50">
-              <td class="px-6 py-4 whitespace-nowrap"><div class="h-12 bg-gray-200 rounded w-16"></div></td>
-              <td class="px-6 py-4 whitespace-nowrap"><div class="h-4 bg-gray-200 rounded w-16"></div></td>
-              <td class="px-6 py-4 whitespace-nowrap"><div class="h-4 bg-gray-200 rounded w-32"></div></td>
-              <td class="px-6 py-4 whitespace-nowrap text-center space-x-3 flex justify-center"><div class="h-4 bg-gray-200 rounded w-24"></div></td>
+            <tr
+              v-for="n in 4"
+              :key="'skel-cat-' + n"
+              class="animate-pulse hover:bg-gray-50"
+            >
+              <td class="px-6 py-4 whitespace-nowrap">
+                <div class="h-12 bg-gray-200 rounded w-16"></div>
+              </td>
+              <td class="px-6 py-4 whitespace-nowrap">
+                <div class="h-4 bg-gray-200 rounded w-16"></div>
+              </td>
+              <td class="px-6 py-4 whitespace-nowrap">
+                <div class="h-4 bg-gray-200 rounded w-32"></div>
+              </td>
+              <td
+                class="px-6 py-4 whitespace-nowrap text-center space-x-3 flex justify-center"
+              >
+                <div class="h-4 bg-gray-200 rounded w-24"></div>
+              </td>
             </tr>
           </template>
 
@@ -775,35 +825,73 @@ const deleteCategory = async (id) => {
           </template>
 
           <template v-else>
-            <tr v-for="cat in paginatedCategories" :key="cat.id" class="hover:bg-gray-50 transition-colors">
+            <tr
+              v-for="cat in paginatedCategories"
+              :key="cat.id"
+              class="hover:bg-gray-50 transition-colors"
+            >
               <td class="px-6 py-4 whitespace-nowrap">
-                <img v-if="cat.image_url" :src="cat.image_url" class="w-16 h-12 object-cover rounded shadow-sm border border-gray-200" />
-                <div v-else class="w-16 h-12 bg-gray-100 flex items-center justify-center text-xs text-gray-400 rounded border border-gray-200">No Img</div>
+                <img
+                  v-if="cat.image_url"
+                  :src="cat.image_url"
+                  class="w-16 h-12 object-cover rounded shadow-sm border border-gray-200"
+                />
+                <div
+                  v-else
+                  class="w-16 h-12 bg-gray-100 flex items-center justify-center text-xs text-gray-400 rounded border border-gray-200"
+                >
+                  No Img
+                </div>
               </td>
-              <td class="px-6 py-4 whitespace-nowrap text-sm font-bold text-gray-900">
-                <span class="bg-gray-100 px-2 py-1 rounded text-xs">{{ cat.code }}</span>
+              <td
+                class="px-6 py-4 whitespace-nowrap text-sm font-bold text-gray-900"
+              >
+                <span class="bg-gray-100 px-2 py-1 rounded text-xs">{{
+                  cat.code
+                }}</span>
               </td>
-              <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-700">{{ cat.name }}</td>
-              <td class="px-6 py-4 whitespace-nowrap text-center text-sm font-medium space-x-3">
-                <button @click="openModal('edit', cat)" class="text-amber-600 hover:text-amber-900 bg-amber-50 px-3 py-1.5 rounded transition">Edit</button>
-                <button @click="deleteCategory(cat.id)" class="text-red-600 hover:text-red-900 bg-red-50 px-3 py-1.5 rounded transition">Hapus</button>
+              <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-700">
+                {{ cat.name }}
+              </td>
+              <td
+                class="px-6 py-4 whitespace-nowrap text-center text-sm font-medium space-x-3"
+              >
+                <button
+                  @click="openModal('edit', cat)"
+                  class="text-amber-600 hover:text-amber-900 bg-amber-50 px-3 py-1.5 rounded transition"
+                >
+                  Edit
+                </button>
+                <button
+                  @click="deleteCategory(cat.id)"
+                  class="text-red-600 hover:text-red-900 bg-red-50 px-3 py-1.5 rounded transition"
+                >
+                  Hapus
+                </button>
               </td>
             </tr>
           </template>
-
         </tbody>
       </table>
     </div>
 
     <!-- PAGINATION FOOTER -->
-    <div class="bg-white p-4 rounded-b-lg shadow-sm flex flex-col md:flex-row justify-between items-center gap-4 text-sm text-gray-600 border-t border-gray-100">
+    <div
+      class="bg-white p-4 rounded-b-lg shadow-sm flex flex-col md:flex-row justify-between items-center gap-4 text-sm text-gray-600 border-t border-gray-100"
+    >
       <div>
-        Showing <span class="font-bold text-gray-900">{{ showingStart }}</span> to <span class="font-bold text-gray-900">{{ showingEnd }}</span> of <span class="font-bold text-gray-900">{{ filteredCategories.length }}</span> items
+        Showing
+        <span class="font-bold text-gray-900">{{ showingStart }}</span> to
+        <span class="font-bold text-gray-900">{{ showingEnd }}</span> of
+        <span class="font-bold text-gray-900">{{
+          filteredCategories.length
+        }}</span>
+        items
       </div>
 
       <div class="flex items-center space-x-1" v-if="totalPages > 1">
-        <button 
-          @click="currentPage--" 
+        <button
+          @click="currentPage--"
           :disabled="currentPage === 1"
           class="px-3 py-1.5 border border-gray-300 rounded hover:bg-gray-50 disabled:opacity-50 disabled:cursor-not-allowed transition"
         >
@@ -811,23 +899,25 @@ const deleteCategory = async (id) => {
         </button>
 
         <template v-for="(pageItem, index) in paginationArray" :key="index">
-          <span v-if="pageItem === '...'" class="px-2 py-1.5 text-gray-400">...</span>
-          <button 
+          <span v-if="pageItem === '...'" class="px-2 py-1.5 text-gray-400"
+            >...</span
+          >
+          <button
             v-else
             @click="currentPage = pageItem"
             :class="[
               'px-3 py-1.5 border rounded transition',
-              currentPage === pageItem 
-                ? 'bg-orange-500 text-white border-orange-500 font-bold' 
-                : 'border-gray-300 text-gray-700 hover:bg-gray-50'
+              currentPage === pageItem
+                ? 'bg-orange-500 text-white border-orange-500 font-bold'
+                : 'border-gray-300 text-gray-700 hover:bg-gray-50',
             ]"
           >
             {{ pageItem }}
           </button>
         </template>
 
-        <button 
-          @click="currentPage++" 
+        <button
+          @click="currentPage++"
           :disabled="currentPage === totalPages"
           class="px-3 py-1.5 border border-gray-300 rounded hover:bg-gray-50 disabled:opacity-50 disabled:cursor-not-allowed transition"
         >
@@ -837,32 +927,77 @@ const deleteCategory = async (id) => {
     </div>
 
     <!-- MODAL FORM -->
-    <div v-if="isModalOpen" class="fixed inset-0 bg-black bg-opacity-60 backdrop-blur-sm flex items-center justify-center z-50 p-4">
-      <div class="bg-white p-6 md:p-8 rounded-2xl shadow-2xl w-full max-w-md slide-up-anim">
+    <div
+      v-if="isModalOpen"
+      class="fixed inset-0 bg-black bg-opacity-60 backdrop-blur-sm flex items-center justify-center z-50 p-4"
+    >
+      <div
+        class="bg-white p-6 md:p-8 rounded-2xl shadow-2xl w-full max-w-md slide-up-anim"
+      >
         <h2 class="text-2xl font-bold mb-6 text-gray-800">
           {{ modalMode === "add" ? "Tambah Kategori" : "Edit Kategori" }}
         </h2>
         <form @submit.prevent="saveCategory">
           <div class="mb-4">
-            <label class="block text-gray-700 text-sm font-bold mb-2">Kode Kategori</label>
-            <input v-model="form.code" type="text" required class="w-full border border-gray-300 rounded-lg px-4 py-3 focus:outline-none focus:ring-2 focus:ring-orange-500 transition" placeholder="Misal: MC" />
+            <label class="block text-gray-700 text-sm font-bold mb-2"
+              >Kode Kategori</label
+            >
+            <input
+              v-model="form.code"
+              type="text"
+              required
+              class="w-full border border-gray-300 rounded-lg px-4 py-3 focus:outline-none focus:ring-2 focus:ring-orange-500 transition"
+              placeholder="Misal: MC"
+            />
           </div>
           <div class="mb-4">
-            <label class="block text-gray-700 text-sm font-bold mb-2">Nama Kategori</label>
-            <input v-model="form.name" type="text" required class="w-full border border-gray-300 rounded-lg px-4 py-3 focus:outline-none focus:ring-2 focus:ring-orange-500 transition" placeholder="Misal: Main Course" />
+            <label class="block text-gray-700 text-sm font-bold mb-2"
+              >Nama Kategori</label
+            >
+            <input
+              v-model="form.name"
+              type="text"
+              required
+              class="w-full border border-gray-300 rounded-lg px-4 py-3 focus:outline-none focus:ring-2 focus:ring-orange-500 transition"
+              placeholder="Misal: Main Course"
+            />
           </div>
           <div class="mb-4">
-            <label class="block text-gray-700 text-sm font-bold mb-2">Deskripsi</label>
-            <textarea v-model="form.description" rows="3" class="w-full border border-gray-300 rounded-lg px-4 py-3 focus:outline-none focus:ring-2 focus:ring-orange-500 transition" placeholder="Tuliskan deskripsi kategori..."></textarea>
+            <label class="block text-gray-700 text-sm font-bold mb-2"
+              >Deskripsi</label
+            >
+            <textarea
+              v-model="form.description"
+              rows="3"
+              class="w-full border border-gray-300 rounded-lg px-4 py-3 focus:outline-none focus:ring-2 focus:ring-orange-500 transition"
+              placeholder="Tuliskan deskripsi kategori..."
+            ></textarea>
           </div>
           <div class="mb-6">
-            <label class="block text-gray-700 text-sm font-bold mb-2">Gambar Kategori (Opsional)</label>
-            <input type="file" @change="handleFileChange" accept="image/*" class="w-full border border-gray-300 rounded-lg px-4 py-2.5 text-sm bg-gray-50 file:mr-4 file:py-2 file:px-4 file:rounded-full file:border-0 file:text-sm file:font-semibold file:bg-orange-50 file:text-orange-700 hover:file:bg-orange-100 transition" />
+            <label class="block text-gray-700 text-sm font-bold mb-2"
+              >Gambar Kategori (Opsional)</label
+            >
+            <input
+              type="file"
+              @change="handleFileChange"
+              accept="image/*"
+              class="w-full border border-gray-300 rounded-lg px-4 py-2.5 text-sm bg-gray-50 file:mr-4 file:py-2 file:px-4 file:rounded-full file:border-0 file:text-sm file:font-semibold file:bg-orange-50 file:text-orange-700 hover:file:bg-orange-100 transition"
+            />
           </div>
           <div class="flex justify-end gap-3 mt-8">
-            <button type="button" @click="closeModal" class="px-6 py-2.5 text-gray-700 bg-gray-100 rounded-lg font-bold hover:bg-gray-200 transition">Batal</button>
-            <button type="submit" :disabled="isSaving" class="px-6 py-2.5 text-white bg-orange-500 rounded-lg font-bold hover:bg-orange-600 disabled:opacity-50 transition">
-              {{ isSaving ? 'Menyimpan...' : 'Simpan' }}
+            <button
+              type="button"
+              @click="closeModal"
+              class="px-6 py-2.5 text-gray-700 bg-gray-100 rounded-lg font-bold hover:bg-gray-200 transition"
+            >
+              Batal
+            </button>
+            <button
+              type="submit"
+              :disabled="isSaving"
+              class="px-6 py-2.5 text-white bg-orange-500 rounded-lg font-bold hover:bg-orange-600 disabled:opacity-50 transition"
+            >
+              {{ isSaving ? "Menyimpan..." : "Simpan" }}
             </button>
           </div>
         </form>
@@ -872,17 +1007,21 @@ const deleteCategory = async (id) => {
 </template>
 
 <script setup>
-import Swal from 'sweetalert2';
-import { ref, computed, watch } from 'vue';
+import Swal from "sweetalert2";
+import { ref, computed, watch } from "vue";
 
 definePageMeta({ layout: "admin", middleware: "auth" });
 
-const baseURL = "https://kecilung-resto.vercel.app/api";
-const { data: response, pending, refresh } = useLazyFetch(`${baseURL}/categories`);
+const baseURL = "http://31.97.60.207:8246/api";
+const {
+  data: response,
+  pending,
+  refresh,
+} = useLazyFetch(`${baseURL}/categories`);
 const allCategories = computed(() => response.value?.data || []);
 
 // --- STATE FILTER & PAGINATION ---
-const searchQuery = ref('');
+const searchQuery = ref("");
 const itemsPerPage = ref(10);
 const currentPage = ref(1);
 
@@ -894,14 +1033,16 @@ watch([searchQuery, itemsPerPage], () => {
 const filteredCategories = computed(() => {
   if (!searchQuery.value) return allCategories.value;
   const q = searchQuery.value.toLowerCase();
-  return allCategories.value.filter(cat => 
-    cat.name.toLowerCase().includes(q) || 
-    cat.code.toLowerCase().includes(q)
+  return allCategories.value.filter(
+    (cat) =>
+      cat.name.toLowerCase().includes(q) || cat.code.toLowerCase().includes(q),
   );
 });
 
 // --- LOGIKA PAGINATION ---
-const totalPages = computed(() => Math.ceil(filteredCategories.value.length / itemsPerPage.value));
+const totalPages = computed(() =>
+  Math.ceil(filteredCategories.value.length / itemsPerPage.value),
+);
 
 const paginatedCategories = computed(() => {
   const start = (currentPage.value - 1) * itemsPerPage.value;
@@ -909,17 +1050,27 @@ const paginatedCategories = computed(() => {
 });
 
 // Logika "Showing X to Y of Z"
-const showingStart = computed(() => filteredCategories.value.length === 0 ? 0 : ((currentPage.value - 1) * itemsPerPage.value) + 1);
-const showingEnd = computed(() => Math.min(currentPage.value * itemsPerPage.value, filteredCategories.value.length));
+const showingStart = computed(() =>
+  filteredCategories.value.length === 0
+    ? 0
+    : (currentPage.value - 1) * itemsPerPage.value + 1,
+);
+const showingEnd = computed(() =>
+  Math.min(
+    currentPage.value * itemsPerPage.value,
+    filteredCategories.value.length,
+  ),
+);
 
 // Algoritma Pagination Dinamis (Maksimal 7 Kotak)
 const paginationArray = computed(() => {
   const current = currentPage.value;
   const total = totalPages.value;
   if (total <= 7) return Array.from({ length: total }, (_, i) => i + 1);
-  if (current <= 4) return [1, 2, 3, 4, 5, '...', total];
-  if (current >= total - 3) return [1, '...', total - 4, total - 3, total - 2, total - 1, total];
-  return [1, '...', current - 1, current, current + 1, '...', total];
+  if (current <= 4) return [1, 2, 3, 4, 5, "...", total];
+  if (current >= total - 3)
+    return [1, "...", total - 4, total - 3, total - 2, total - 1, total];
+  return [1, "...", current - 1, current, current + 1, "...", total];
 });
 
 // --- MODAL & API ACTIONS ---
@@ -931,13 +1082,13 @@ const selectedFile = ref(null);
 
 const openModal = (mode, data = null) => {
   modalMode.value = mode;
-  selectedFile.value = null; 
+  selectedFile.value = null;
   if (mode === "edit" && data) form.value = { ...data };
   else form.value = { id: null, code: "", name: "", description: "" };
   isModalOpen.value = true;
 };
 
-const closeModal = () => isModalOpen.value = false;
+const closeModal = () => (isModalOpen.value = false);
 
 const handleFileChange = (e) => {
   if (e.target.files.length > 0) selectedFile.value = e.target.files[0];
@@ -955,14 +1106,27 @@ const saveCategory = async () => {
     if (modalMode.value === "add") {
       await $fetch(`${baseURL}/categories`, { method: "POST", body: formData });
     } else {
-      await $fetch(`${baseURL}/categories/${form.value.id}`, { method: "PUT", body: formData });
+      await $fetch(`${baseURL}/categories/${form.value.id}`, {
+        method: "PUT",
+        body: formData,
+      });
     }
-    
+
     closeModal();
     refresh();
-    Swal.fire({ icon: 'success', title: 'Berhasil!', text: `Kategori berhasil disimpan.`, timer: 1500, showConfirmButton: false });
+    Swal.fire({
+      icon: "success",
+      title: "Berhasil!",
+      text: `Kategori berhasil disimpan.`,
+      timer: 1500,
+      showConfirmButton: false,
+    });
   } catch (error) {
-    Swal.fire({ icon: 'error', title: 'Gagal!', text: 'Gagal menyimpan data.' });
+    Swal.fire({
+      icon: "error",
+      title: "Gagal!",
+      text: "Gagal menyimpan data.",
+    });
   } finally {
     isSaving.value = false;
   }
@@ -970,22 +1134,32 @@ const saveCategory = async () => {
 
 const deleteCategory = async (id) => {
   const result = await Swal.fire({
-    title: 'Hapus Kategori?',
+    title: "Hapus Kategori?",
     text: "Data yang dihapus tidak dapat dikembalikan!",
-    icon: 'warning',
+    icon: "warning",
     showCancelButton: true,
-    confirmButtonColor: '#ef4444',
-    cancelButtonColor: '#6b7280',
-    confirmButtonText: 'Ya, Hapus!'
+    confirmButtonColor: "#ef4444",
+    cancelButtonColor: "#6b7280",
+    confirmButtonText: "Ya, Hapus!",
   });
 
   if (result.isConfirmed) {
     try {
       await $fetch(`${baseURL}/categories/${id}`, { method: "DELETE" });
       refresh();
-      Swal.fire({ icon: 'success', title: 'Terhapus!', text: 'Kategori dihapus.', timer: 1500, showConfirmButton: false });
+      Swal.fire({
+        icon: "success",
+        title: "Terhapus!",
+        text: "Kategori dihapus.",
+        timer: 1500,
+        showConfirmButton: false,
+      });
     } catch (error) {
-      Swal.fire({ icon: 'error', title: 'Gagal!', text: 'Gagal menghapus data kategori.' });
+      Swal.fire({
+        icon: "error",
+        title: "Gagal!",
+        text: "Gagal menghapus data kategori.",
+      });
     }
   }
 };
@@ -996,7 +1170,13 @@ const deleteCategory = async (id) => {
   animation: slideUp 0.3s ease-out forwards;
 }
 @keyframes slideUp {
-  0% { transform: translateY(20px); opacity: 0; }
-  100% { transform: translateY(0); opacity: 1; }
+  0% {
+    transform: translateY(20px);
+    opacity: 0;
+  }
+  100% {
+    transform: translateY(0);
+    opacity: 1;
+  }
 }
 </style>

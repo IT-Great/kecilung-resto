@@ -177,142 +177,219 @@
 
 <template>
   <div class="min-h-screen bg-gray-50 flex font-sans text-gray-800">
-    
     <!-- ============================== -->
     <!-- SIDEBAR (Fixed Kiri, Collapsible)-->
     <!-- ============================== -->
-    <aside 
+    <aside
       :class="[
         'fixed inset-y-0 left-0 bg-white border-r border-gray-200 flex flex-col z-50 shadow-sm transition-all duration-300',
-        isSidebarCollapsed ? 'w-20' : 'w-64'
+        isSidebarCollapsed ? 'w-20' : 'w-64',
       ]"
     >
-      
       <!-- Logo Resto -->
-      <div class="h-16 flex items-center justify-center border-b border-gray-200 px-4">
+      <div
+        class="h-16 flex items-center justify-center border-b border-gray-200 px-4"
+      >
         <NuxtLink to="/admin" class="flex items-center justify-center w-full">
           <!-- Gambar logo: Akan mengecil atau dipotong dengan anggun jika sidebar collapsed -->
-          <img 
-            src="/assets/images/kecilung_logo.webp" 
-            alt="Kecilung Resto" 
+          <img
+            src="/assets/images/kecilung_logo.webp"
+            alt="Kecilung Resto"
             :class="[
               'h-10 object-contain transition-all duration-300',
-              isSidebarCollapsed ? 'w-10' : 'w-full'
-            ]" 
+              isSidebarCollapsed ? 'w-10' : 'w-full',
+            ]"
           />
         </NuxtLink>
       </div>
-      
+
       <!-- Navigasi Utama -->
-      <nav class="flex-1 overflow-y-auto p-4 space-y-2 text-sm font-medium hide-scrollbar mt-2">
-        
+      <nav
+        class="flex-1 overflow-y-auto p-4 space-y-2 text-sm font-medium hide-scrollbar mt-2"
+      >
         <!-- Helper Function untuk Styling Link -->
-         <!-- Menu Dashboard (Paling Atas) -->
-        <NuxtLink 
-          to="/admin/dashboard" 
+        <!-- Menu Dashboard (Paling Atas) -->
+        <NuxtLink
+          to="/admin/dashboard"
           :class="[
             'flex items-center py-3 rounded-lg transition-all duration-200 hover:bg-orange-50 hover:text-orange-600 group border-l-4 border-transparent',
-            isSidebarCollapsed ? 'justify-center px-0' : 'gap-3 px-4'
-          ]" 
+            isSidebarCollapsed ? 'justify-center px-0' : 'gap-3 px-4',
+          ]"
           active-class="bg-orange-50 text-orange-600 border-l-4 border-orange-500 font-bold shadow-sm"
         >
           <!-- Icon Dashboard (Grid) -->
-          <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6 text-gray-500 group-hover:text-orange-500 transition-colors" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h7" />
+          <svg
+            xmlns="http://www.w3.org/2000/svg"
+            class="h-6 w-6 text-gray-500 group-hover:text-orange-500 transition-colors"
+            fill="none"
+            viewBox="0 0 24 24"
+            stroke="currentColor"
+          >
+            <path
+              stroke-linecap="round"
+              stroke-linejoin="round"
+              stroke-width="2"
+              d="M4 6h16M4 12h16M4 18h7"
+            />
           </svg>
-          <span :class="{'hidden': isSidebarCollapsed}">Dashboard</span>
+          <span :class="{ hidden: isSidebarCollapsed }">Dashboard</span>
         </NuxtLink>
         <!-- ===================== -->
         <!-- Menu Category -->
-        <NuxtLink 
-          to="/admin/category/category_page" 
+        <NuxtLink
+          to="/admin/category/category_page"
           :class="[
             'flex items-center py-3 rounded-lg transition-all duration-200 hover:bg-orange-50 hover:text-orange-600 group border-l-4 border-transparent',
-            isSidebarCollapsed ? 'justify-center px-0' : 'gap-3 px-4'
-          ]" 
+            isSidebarCollapsed ? 'justify-center px-0' : 'gap-3 px-4',
+          ]"
           active-class="bg-orange-50 text-orange-600 border-l-4 border-orange-500 font-bold shadow-sm"
         >
-          <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6 text-gray-500 group-hover:text-orange-500 transition-colors" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 11H5m14 0a2 2 0 012 2v6a2 2 0 01-2 2H5a2 2 0 01-2-2v-6a2 2 0 012-2m14 0V9a2 2 0 00-2-2M5 11V9a2 2 0 012-2m0 0V5a2 2 0 012-2h6a2 2 0 012 2v2M7 7h10" />
+          <svg
+            xmlns="http://www.w3.org/2000/svg"
+            class="h-6 w-6 text-gray-500 group-hover:text-orange-500 transition-colors"
+            fill="none"
+            viewBox="0 0 24 24"
+            stroke="currentColor"
+          >
+            <path
+              stroke-linecap="round"
+              stroke-linejoin="round"
+              stroke-width="2"
+              d="M19 11H5m14 0a2 2 0 012 2v6a2 2 0 01-2 2H5a2 2 0 01-2-2v-6a2 2 0 012-2m14 0V9a2 2 0 00-2-2M5 11V9a2 2 0 012-2m0 0V5a2 2 0 012-2h6a2 2 0 012 2v2M7 7h10"
+            />
           </svg>
-          <span :class="{'hidden': isSidebarCollapsed}">Category</span>
+          <span :class="{ hidden: isSidebarCollapsed }">Category</span>
         </NuxtLink>
 
         <!-- Menu Menu -->
-        <NuxtLink 
-          to="/admin/menu/menu_page" 
+        <NuxtLink
+          to="/admin/menu/menu_page"
           :class="[
             'flex items-center py-3 rounded-lg transition-all duration-200 hover:bg-orange-50 hover:text-orange-600 group border-l-4 border-transparent',
-            isSidebarCollapsed ? 'justify-center px-0' : 'gap-3 px-4'
-          ]" 
+            isSidebarCollapsed ? 'justify-center px-0' : 'gap-3 px-4',
+          ]"
           active-class="bg-orange-50 text-orange-600 border-l-4 border-orange-500 font-bold shadow-sm"
         >
-          <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6 text-gray-500 group-hover:text-orange-500 transition-colors" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12h6m-6 4h6m2 5H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z" />
+          <svg
+            xmlns="http://www.w3.org/2000/svg"
+            class="h-6 w-6 text-gray-500 group-hover:text-orange-500 transition-colors"
+            fill="none"
+            viewBox="0 0 24 24"
+            stroke="currentColor"
+          >
+            <path
+              stroke-linecap="round"
+              stroke-linejoin="round"
+              stroke-width="2"
+              d="M9 12h6m-6 4h6m2 5H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z"
+            />
           </svg>
-          <span :class="{'hidden': isSidebarCollapsed}">Menu</span>
+          <span :class="{ hidden: isSidebarCollapsed }">Menu</span>
         </NuxtLink>
 
         <!-- Menu Catering -->
-        <NuxtLink 
-          to="/admin/catering/catering_page" 
+        <NuxtLink
+          to="/admin/catering/catering_page"
           :class="[
             'flex items-center py-3 rounded-lg transition-all duration-200 hover:bg-orange-50 hover:text-orange-600 group border-l-4 border-transparent',
-            isSidebarCollapsed ? 'justify-center px-0' : 'gap-3 px-4'
-          ]" 
+            isSidebarCollapsed ? 'justify-center px-0' : 'gap-3 px-4',
+          ]"
           active-class="bg-orange-50 text-orange-600 border-l-4 border-orange-500 font-bold shadow-sm"
         >
-          <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6 text-gray-500 group-hover:text-orange-500 transition-colors" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M21 15.546c-.523 0-1.046.151-1.5.454a2.704 2.704 0 01-3 0 2.704 2.704 0 00-3 0 2.704 2.704 0 01-3 0 2.704 2.704 0 00-3 0 2.704 2.704 0 01-3 0 2.701 2.701 0 00-1.5-.454M9 6v2m3-2v2m3-2v2M9 3h.01M12 3h.01M15 3h.01M21 21v-7a2 2 0 00-2-2H5a2 2 0 00-2 2v7h18zm-3-9v-2a2 2 0 00-2-2H8a2 2 0 00-2 2v2h12z" />
+          <svg
+            xmlns="http://www.w3.org/2000/svg"
+            class="h-6 w-6 text-gray-500 group-hover:text-orange-500 transition-colors"
+            fill="none"
+            viewBox="0 0 24 24"
+            stroke="currentColor"
+          >
+            <path
+              stroke-linecap="round"
+              stroke-linejoin="round"
+              stroke-width="2"
+              d="M21 15.546c-.523 0-1.046.151-1.5.454a2.704 2.704 0 01-3 0 2.704 2.704 0 00-3 0 2.704 2.704 0 01-3 0 2.704 2.704 0 00-3 0 2.704 2.704 0 01-3 0 2.701 2.701 0 00-1.5-.454M9 6v2m3-2v2m3-2v2M9 3h.01M12 3h.01M15 3h.01M21 21v-7a2 2 0 00-2-2H5a2 2 0 00-2 2v7h18zm-3-9v-2a2 2 0 00-2-2H8a2 2 0 00-2 2v2h12z"
+            />
           </svg>
-          <span :class="{'hidden': isSidebarCollapsed}">Catering</span>
+          <span :class="{ hidden: isSidebarCollapsed }">Catering</span>
         </NuxtLink>
 
         <!-- Menu Moment -->
-        <NuxtLink 
-          to="/admin/moment/moment_page" 
+        <NuxtLink
+          to="/admin/moment/moment_page"
           :class="[
             'flex items-center py-3 rounded-lg transition-all duration-200 hover:bg-orange-50 hover:text-orange-600 group border-l-4 border-transparent',
-            isSidebarCollapsed ? 'justify-center px-0' : 'gap-3 px-4'
-          ]" 
+            isSidebarCollapsed ? 'justify-center px-0' : 'gap-3 px-4',
+          ]"
           active-class="bg-orange-50 text-orange-600 border-l-4 border-orange-500 font-bold shadow-sm"
         >
-          <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6 text-gray-500 group-hover:text-orange-500 transition-colors" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 3v4M3 5h4M6 17v4m-2-2h4m5-16l2.286 6.857L21 12l-5.714 2.143L13 21l-2.286-6.857L5 12l5.714-2.143L13 3z" />
+          <svg
+            xmlns="http://www.w3.org/2000/svg"
+            class="h-6 w-6 text-gray-500 group-hover:text-orange-500 transition-colors"
+            fill="none"
+            viewBox="0 0 24 24"
+            stroke="currentColor"
+          >
+            <path
+              stroke-linecap="round"
+              stroke-linejoin="round"
+              stroke-width="2"
+              d="M5 3v4M3 5h4M6 17v4m-2-2h4m5-16l2.286 6.857L21 12l-5.714 2.143L13 21l-2.286-6.857L5 12l5.714-2.143L13 3z"
+            />
           </svg>
-          <span :class="{'hidden': isSidebarCollapsed}">Moment</span>
+          <span :class="{ hidden: isSidebarCollapsed }">Moment</span>
         </NuxtLink>
 
         <!-- Menu Article -->
-        <NuxtLink 
-          to="/admin/article/article_page" 
+        <NuxtLink
+          to="/admin/article/article_page"
           :class="[
             'flex items-center py-3 rounded-lg transition-all duration-200 hover:bg-orange-50 hover:text-orange-600 group border-l-4 border-transparent',
-            isSidebarCollapsed ? 'justify-center px-0' : 'gap-3 px-4'
-          ]" 
+            isSidebarCollapsed ? 'justify-center px-0' : 'gap-3 px-4',
+          ]"
           active-class="bg-orange-50 text-orange-600 border-l-4 border-orange-500 font-bold shadow-sm"
         >
-          <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6 text-gray-500 group-hover:text-orange-500 transition-colors" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 20H5a2 2 0 01-2-2V6a2 2 0 012-2h10a2 2 0 012 2v1m2 13a2 2 0 01-2-2V7m2 13a2 2 0 002-2V9.5a2.5 2.5 0 00-2.5-2.5H14" />
+          <svg
+            xmlns="http://www.w3.org/2000/svg"
+            class="h-6 w-6 text-gray-500 group-hover:text-orange-500 transition-colors"
+            fill="none"
+            viewBox="0 0 24 24"
+            stroke="currentColor"
+          >
+            <path
+              stroke-linecap="round"
+              stroke-linejoin="round"
+              stroke-width="2"
+              d="M19 20H5a2 2 0 01-2-2V6a2 2 0 012-2h10a2 2 0 012 2v1m2 13a2 2 0 01-2-2V7m2 13a2 2 0 002-2V9.5a2.5 2.5 0 00-2.5-2.5H14"
+            />
           </svg>
-          <span :class="{'hidden': isSidebarCollapsed}">Article</span>
+          <span :class="{ hidden: isSidebarCollapsed }">Article</span>
         </NuxtLink>
 
         <!-- Menu Pesan (Contact Us) -->
-        <NuxtLink 
-          to="/admin/contact/contact_page" 
+        <NuxtLink
+          to="/admin/contact/contact_page"
           :class="[
             'flex items-center py-3 rounded-lg transition-all duration-200 hover:bg-orange-50 hover:text-orange-600 group border-l-4 border-transparent',
-            isSidebarCollapsed ? 'justify-center px-0' : 'gap-3 px-4'
-          ]" 
+            isSidebarCollapsed ? 'justify-center px-0' : 'gap-3 px-4',
+          ]"
           active-class="bg-orange-50 text-orange-600 border-l-4 border-orange-500 font-bold shadow-sm"
         >
-          <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6 text-gray-500 group-hover:text-orange-500 transition-colors" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 8l7.89 5.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z" />
+          <svg
+            xmlns="http://www.w3.org/2000/svg"
+            class="h-6 w-6 text-gray-500 group-hover:text-orange-500 transition-colors"
+            fill="none"
+            viewBox="0 0 24 24"
+            stroke="currentColor"
+          >
+            <path
+              stroke-linecap="round"
+              stroke-linejoin="round"
+              stroke-width="2"
+              d="M3 8l7.89 5.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z"
+            />
           </svg>
-          <span :class="{'hidden': isSidebarCollapsed}">Pesan</span>
+          <span :class="{ hidden: isSidebarCollapsed }">Pesan</span>
         </NuxtLink>
-
       </nav>
 
       <!-- Tombol Logout Bawah -->
@@ -345,19 +422,30 @@
       </div> -->
 
       <div class="p-4 border-t border-gray-200 bg-gray-50">
-        <button 
+        <button
           @click="handleLogout"
           :title="isSidebarCollapsed ? 'Logout' : ''"
           :class="[
             'w-full flex items-center justify-center bg-red-50 hover:bg-red-100 text-red-600 py-3 rounded-lg font-bold transition-all shadow-sm transform hover:-translate-y-0.5 border border-red-100',
-            isSidebarCollapsed ? 'px-0' : 'gap-2'
+            isSidebarCollapsed ? 'px-0' : 'gap-2',
           ]"
         >
           <!-- Icon Logout -->
-          <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 16l4-4m0 0l-4-4m4 4H7m6 4v1a3 3 0 01-3 3H6a3 3 0 01-3-3V7a3 3 0 013-3h4a3 3 0 013 3v1" />
+          <svg
+            xmlns="http://www.w3.org/2000/svg"
+            class="h-6 w-6"
+            fill="none"
+            viewBox="0 0 24 24"
+            stroke="currentColor"
+          >
+            <path
+              stroke-linecap="round"
+              stroke-linejoin="round"
+              stroke-width="2"
+              d="M17 16l4-4m0 0l-4-4m4 4H7m6 4v1a3 3 0 01-3 3H6a3 3 0 01-3-3V7a3 3 0 013-3h4a3 3 0 013 3v1"
+            />
           </svg>
-          <span :class="{'hidden': isSidebarCollapsed}">Logout</span>
+          <span :class="{ hidden: isSidebarCollapsed }">Logout</span>
         </button>
       </div>
     </aside>
@@ -365,20 +453,30 @@
     <!-- ============================== -->
     <!-- HEADER ATAS (Fixed Kanan Atas) -->
     <!-- ============================== -->
-    <header 
+    <header
       :class="[
         'fixed top-0 right-0 h-16 bg-white shadow-sm border-b border-gray-200 z-40 flex items-center justify-between px-6 transition-all duration-300',
-        isSidebarCollapsed ? 'left-20' : 'left-64'
+        isSidebarCollapsed ? 'left-20' : 'left-64',
       ]"
     >
-      
       <!-- Tombol Hamburger Kiri (Toggle Sidebar) -->
-      <button 
+      <button
         @click="toggleSidebar"
         class="text-gray-500 hover:text-orange-600 focus:outline-none p-2 rounded-lg hover:bg-orange-50 transition-colors"
       >
-        <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-          <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h7" />
+        <svg
+          xmlns="http://www.w3.org/2000/svg"
+          class="h-6 w-6"
+          fill="none"
+          viewBox="0 0 24 24"
+          stroke="currentColor"
+        >
+          <path
+            stroke-linecap="round"
+            stroke-linejoin="round"
+            stroke-width="2"
+            d="M4 6h16M4 12h16M4 18h7"
+          />
         </svg>
       </button>
 
@@ -398,33 +496,42 @@
           <span class="absolute bottom-0 right-0 block h-3 w-3 rounded-full bg-green-500 ring-2 ring-white"></span>
         </button>
       </div> -->
-      
+
       <div class="flex items-center gap-4">
         <div class="flex flex-col text-right hidden sm:block">
-          <span class="text-sm font-bold text-gray-900 block leading-tight">{{ currentAdmin.name || 'Admin' }}</span>
+          <span class="text-sm font-bold text-gray-900 block leading-tight">{{
+            currentAdmin.name || "Admin"
+          }}</span>
           <span class="text-xs text-gray-500">Super Admin</span>
         </div>
-        
+
         <!-- Tombol Avatar yang mengarah ke Profil -->
-        <button @click="goToProfile" class="relative rounded-full focus:outline-none focus:ring-2 focus:ring-orange-500 focus:ring-offset-2">
-          <img 
-            :src="currentAdmin.image_url || `https://ui-avatars.com/api/?name=${currentAdmin.name || 'A'}&background=f97316&color=fff`" 
-            alt="Profil Admin" 
+        <button
+          @click="goToProfile"
+          class="relative rounded-full focus:outline-none focus:ring-2 focus:ring-orange-500 focus:ring-offset-2"
+        >
+          <img
+            :src="
+              currentAdmin.image_url ||
+              `https://ui-avatars.com/api/?name=${currentAdmin.name || 'A'}&background=f97316&color=fff`
+            "
+            alt="Profil Admin"
             class="h-10 w-10 rounded-full object-cover border-2 border-gray-200 shadow-sm hover:border-orange-500 transition-colors"
           />
-          <span class="absolute bottom-0 right-0 block h-3 w-3 rounded-full bg-green-500 ring-2 ring-white"></span>
+          <span
+            class="absolute bottom-0 right-0 block h-3 w-3 rounded-full bg-green-500 ring-2 ring-white"
+          ></span>
         </button>
       </div>
-
     </header>
 
     <!-- ============================== -->
     <!-- MAIN CONTENT AREA              -->
     <!-- ============================== -->
-    <main 
+    <main
       :class="[
         'flex-1 overflow-x-hidden overflow-y-auto pt-16 min-h-screen transition-all duration-300 bg-gray-50/50',
-        isSidebarCollapsed ? 'pl-20' : 'pl-64'
+        isSidebarCollapsed ? 'pl-20' : 'pl-64',
       ]"
     >
       <!-- Area konten dinamis -->
@@ -432,7 +539,6 @@
         <slot />
       </div>
     </main>
-
   </div>
 </template>
 
@@ -490,24 +596,24 @@
 //   });
 // };
 
-import { ref, onMounted, onBeforeUnmount } from 'vue';
-import { useRouter } from 'vue-router';
-import Swal from 'sweetalert2';
+import { ref, onMounted, onBeforeUnmount } from "vue";
+import { useRouter } from "vue-router";
+import Swal from "sweetalert2";
 
 const router = useRouter();
 const config = useRuntimeConfig();
 const isSidebarCollapsed = ref(false);
-const currentAdmin = ref({ name: 'Admin', image_url: '' });
+const currentAdmin = ref({ name: "Admin", image_url: "" });
 
 // === WEBSOCKET STATE ===
 let ws = null;
 let reconnectTimer = null;
 
 onMounted(() => {
-  const savedData = localStorage.getItem('admin_data');
+  const savedData = localStorage.getItem("admin_data");
   if (savedData) {
     currentAdmin.value = JSON.parse(savedData);
-    
+
     // Hanya inisiasi WebSocket jika Admin sudah login
     initWebSocket();
   }
@@ -524,9 +630,9 @@ onBeforeUnmount(() => {
 // === LOGIKA WEBSOCKET ===
 const initWebSocket = () => {
   // Ganti https/http menjadi wss/ws
-  const baseURL = config.public.apiBase || 'https://kecilung-resto.vercel.app';
-  const wsURL = baseURL.replace(/^http/, 'ws') + '/api/ws';
-  
+  const baseURL = config.public.apiBase || "http://31.97.60.207:8246";
+  const wsURL = baseURL.replace(/^http/, "ws") + "/api/ws";
+
   ws = new WebSocket(wsURL);
 
   ws.onopen = () => {
@@ -559,7 +665,7 @@ const initWebSocket = () => {
 const handleNotification = (data) => {
   // Putar Suara (Opsional - pastikan file mp3 ada)
   try {
-    const audio = new Audio('/assets/sounds/notification.mp3');
+    const audio = new Audio("/assets/sounds/notification.mp3");
     // audio.play();
   } catch (e) {
     // Abaikan jika browser memblokir auto-play audio
@@ -568,30 +674,33 @@ const handleNotification = (data) => {
   // Tampilkan Pop-up Toast di Kanan Atas
   const Toast = Swal.mixin({
     toast: true,
-    position: 'top-end',
+    position: "top-end",
     showConfirmButton: false,
     timer: 5000, // Hilang dalam 5 detik
     timerProgressBar: true,
     didOpen: (toast) => {
-      toast.addEventListener('mouseenter', Swal.stopTimer)
-      toast.addEventListener('mouseleave', Swal.resumeTimer)
-    }
+      toast.addEventListener("mouseenter", Swal.stopTimer);
+      toast.addEventListener("mouseleave", Swal.resumeTimer);
+    },
   });
 
   // Ganti Ikon dan Warna berdasarkan Tipe Notifikasi
-  let iconHtml = '';
-  if (data.type === 'NEW_CATERING_BOOKING' || data.type === 'NEW_MOMENT_BOOKING') {
-    iconHtml = '📅'; // Ikon Kalender
-  } else if (data.type === 'NEW_CONTACT_MSG') {
-    iconHtml = '💬'; // Ikon Pesan
+  let iconHtml = "";
+  if (
+    data.type === "NEW_CATERING_BOOKING" ||
+    data.type === "NEW_MOMENT_BOOKING"
+  ) {
+    iconHtml = "📅"; // Ikon Kalender
+  } else if (data.type === "NEW_CONTACT_MSG") {
+    iconHtml = "💬"; // Ikon Pesan
   }
 
   Toast.fire({
     iconHtml: `<span style="font-size: 24px;">${iconHtml}</span>`,
-    title: 'Pemberitahuan Baru!',
+    title: "Pemberitahuan Baru!",
     text: data.message,
-    background: '#fff7ed', // orange-50
-    color: '#9a3412'       // orange-800
+    background: "#fff7ed", // orange-50
+    color: "#9a3412", // orange-800
   });
 };
 
@@ -600,24 +709,24 @@ const toggleSidebar = () => {
 };
 
 const goToProfile = () => {
-  router.push('/admin/auth/admin_profile_page');
+  router.push("/admin/auth/admin_profile_page");
 };
 
 const handleLogout = () => {
   Swal.fire({
-    title: 'Keluar sistem?',
+    title: "Keluar sistem?",
     text: "Anda harus login kembali untuk masuk ke panel admin.",
-    icon: 'warning',
+    icon: "warning",
     showCancelButton: true,
-    confirmButtonColor: '#d33',
-    cancelButtonColor: '#3085d6',
-    confirmButtonText: 'Ya, Logout!'
+    confirmButtonColor: "#d33",
+    cancelButtonColor: "#3085d6",
+    confirmButtonText: "Ya, Logout!",
   }).then((result) => {
     if (result.isConfirmed) {
       if (ws) ws.close(); // Tutup WS saat logout
-      localStorage.removeItem('admin_token');
-      localStorage.removeItem('admin_data');
-      router.push('/admin/auth/login_page');
+      localStorage.removeItem("admin_token");
+      localStorage.removeItem("admin_data");
+      router.push("/admin/auth/login_page");
     }
   });
 };
