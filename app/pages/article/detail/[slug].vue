@@ -90,7 +90,7 @@ const isLoading = ref(true);
 const fetchArticleDetail = async () => {
   try {
     const res = await $fetch(
-      `${config.public.apiBase || "https://back.kecilungresto.com"}/api/articles/${articleId}`,
+      `${config.public.apiBase || "https://back.kecilungresto.com"}/api/articles/${articleSlug}`,
     );
     if (res.data) {
       article.value = res.data;
