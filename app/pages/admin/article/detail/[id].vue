@@ -55,12 +55,12 @@ const router = useRouter();
 const config = useRuntimeConfig();
 const articleId = route.params.id;
 const article = ref(null);
-const articleSlug = route.params.slug;
+// const articleSlug = route.params.slug;
 
 const fetchDetail = async () => {
   try {
     const res = await $fetch(
-      `${config.public.apiBase || "https://back.kecilungresto.com"}/api/articles/${articleSlug}`,
+      `${config.public.apiBase || "https://back.kecilungresto.com"}/api/articles/${articleId}`,
     );
     article.value = res.data;
   } catch (error) {

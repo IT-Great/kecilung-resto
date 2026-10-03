@@ -85,13 +85,13 @@ const form = ref({
   description: "",
 });
 const selectedFiles = ref([]);
-// const articleId = route.params.id;
-const articleSlug = route.params.slug;
+const articleId = route.params.id;
+// const articleSlug = route.params.slug;
 
 const fetchDetail = async () => {
   try {
     const res = await $fetch(
-      `${config.public.apiBase || "https://back.kecilungresto.com"}/api/articles/${articleSlug}`,
+      `${config.public.apiBase || "https://back.kecilungresto.com"}/api/articles/${articleId}`,
     );
     form.value.code = res.data.code;
     form.value.name = res.data.name;
@@ -119,7 +119,7 @@ const updateArticle = async () => {
 
   try {
     await $fetch(
-      `${config.public.apiBase || "https://back.kecilungresto.com"}/api/articles/${articleSlug}`,
+      `${config.public.apiBase || "https://back.kecilungresto.com"}/api/articles/${articleId}`,
       {
         method: "PUT",
         body: formData,
