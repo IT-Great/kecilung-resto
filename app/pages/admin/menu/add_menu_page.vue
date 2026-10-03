@@ -67,7 +67,7 @@ definePageMeta({
   layout: "admin",
 });
 const router = useRouter();
-const baseURL = "http://31.97.60.207:8246/api";
+const baseURL = "https://back.kecilungresto.com/api";
 
 // Ambil daftar kategori untuk dropdown
 const { data: catResponse } = await useFetch(`${baseURL}/categories`);
@@ -178,7 +178,7 @@ const submitMenu = async () => {
 <script setup>
 definePageMeta({ layout: "admin", middleware: "auth" });
 const router = useRouter();
-const baseURL = "http://31.97.60.207:8246/api";
+const baseURL = "https://back.kecilungresto.com/api";
 
 const { data: catResponse } = await useFetch(`${baseURL}/categories`);
 const categories = computed(() => catResponse.value?.data || []);

@@ -59,7 +59,7 @@
 <script setup>
 const route = useRoute();
 const categoryId = route.params.id;
-const baseURL = "http://31.97.60.207:8246/api";
+const baseURL = "https://back.kecilungresto.com/api";
 
 // 1. Fetch Menu berdasarkan ID Kategori
 const { data: menuResponse, pending } = useFetch(`${baseURL}/menus/category/${categoryId}`, {
@@ -231,7 +231,7 @@ const currentCategoryName = computed(() => {
 <script setup>
 const route = useRoute();
 const categoryId = route.params.id;
-const baseURL = "http://31.97.60.207:8246/api";
+const baseURL = "https://back.kecilungresto.com/api";
 
 // 1. Fetch Menu berdasarkan ID Kategori
 const { data: menuResponse, pending } = useFetch(
@@ -286,28 +286,29 @@ const closeModal = () => {
 
     <!-- Grid Menu Makanan -->
     <div class="container mx-auto px-6 mt-12">
-      
       <!-- SKELETON LOADING STATE (Pengganti Spinner) -->
       <div
         v-if="pending"
         class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-8"
       >
         <!-- Tampilkan 8 kerangka skeleton agar grid terlihat penuh -->
-        <div 
-          v-for="n in 8" 
+        <div
+          v-for="n in 8"
           :key="'skeleton-' + n"
           class="bg-white rounded-xl shadow-md overflow-hidden animate-pulse"
         >
           <!-- Skeleton Gambar -->
           <div class="h-56 bg-gray-300 relative">
-             <!-- Skeleton Harga Mengambang -->
-             <div class="absolute top-4 right-4 bg-gray-400 h-6 w-24 rounded-full"></div>
+            <!-- Skeleton Harga Mengambang -->
+            <div
+              class="absolute top-4 right-4 bg-gray-400 h-6 w-24 rounded-full"
+            ></div>
           </div>
-          
+
           <div class="p-6">
             <!-- Skeleton Judul -->
             <div class="h-6 bg-gray-300 rounded w-3/4 mb-4"></div>
-            
+
             <!-- Skeleton Deskripsi (2 baris) -->
             <div class="h-3 bg-gray-200 rounded w-full mb-2"></div>
             <div class="h-3 bg-gray-200 rounded w-5/6"></div>
@@ -456,7 +457,7 @@ const closeModal = () => {
 <script setup>
 const route = useRoute();
 const categoryId = route.params.id;
-const baseURL = "http://31.97.60.207:8246/api";
+const baseURL = "https://back.kecilungresto.com/api";
 
 // 1. Fetch Menu berdasarkan ID Kategori
 const { data: menuResponse, pending } = useFetch(

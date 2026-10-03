@@ -93,7 +93,7 @@
 </template>
 
 <script setup>
-const baseURL = "http://31.97.60.207:8246/api";
+const baseURL = "https://back.kecilungresto.com/api";
 const { data: response, pending } = useFetch(`${baseURL}/categories`, {
   lazy: import.meta.client
 });
@@ -202,7 +202,7 @@ const categories = computed(() => response.value?.data || []);
 </template>
 
 <script setup>
-const baseURL = "http://31.97.60.207:8246/api";
+const baseURL = "https://back.kecilungresto.com/api";
 
 // Fetch data kategori
 const { data: response, pending } = useFetch(`${baseURL}/categories`, {
@@ -326,7 +326,7 @@ onMounted(() => {
 </template>
 
 <script setup>
-const baseURL = "http://31.97.60.207:8246/api";
+const baseURL = "https://back.kecilungresto.com/api";
 
 // Fetch data kategori
 const { data: response, pending } = useFetch(`${baseURL}/categories`, {
@@ -601,7 +601,7 @@ onMounted(() => {
 </template>
 
 <script setup>
-const baseURL = "http://31.97.60.207:8246/api";
+const baseURL = "https://back.kecilungresto.com/api";
 
 // Fetch data kategori
 const { data: response, pending } = useFetch(`${baseURL}/categories`, {

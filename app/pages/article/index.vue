@@ -85,7 +85,7 @@ const isLoading = ref(true)
 // Fetch data dari API backend
 const fetchArticles = async () => {
   try {
-    const res = await $fetch(`${config.public.apiBase || 'http://31.97.60.207:8246'}/api/articles`)
+    const res = await $fetch(`${config.public.apiBase || 'https://back.kecilungresto.com'}/api/articles`)
     if (res.data) {
       articles.value = res.data
     }
@@ -220,7 +220,7 @@ const isLoading = ref(true)
 // Fetch data dari API backend
 const fetchArticles = async () => {
   try {
-    const res = await $fetch(`${config.public.apiBase || 'http://31.97.60.207:8246'}/api/articles`)
+    const res = await $fetch(`${config.public.apiBase || 'https://back.kecilungresto.com'}/api/articles`)
     if (res.data) {
       articles.value = res.data
     }
@@ -410,7 +410,7 @@ onMounted(() => {
 import { ref, computed, onMounted, onUnmounted } from "vue";
 
 const config = useRuntimeConfig();
-const baseURL = config.public.apiBase || "http://31.97.60.207:8246";
+const baseURL = config.public.apiBase || "https://back.kecilungresto.com";
 
 // --- STATE MANAJEMEN ---
 const allArticles = ref([]);
@@ -509,18 +509,21 @@ onUnmounted(() => {
   <div class="max-w-7xl mx-auto p-6 min-h-[60vh]">
     <!-- SKELETON LOADING AWAL (Tampil saat isInitialLoad = true) -->
     <div v-if="isInitialLoad">
-      
       <!-- Skeleton Bagian 1: Our Articles (Horizontal) -->
       <section class="mb-20">
         <div class="text-center mb-8">
-          <div class="h-8 bg-gray-200 rounded w-48 mx-auto mb-4 animate-pulse"></div>
-          <div class="w-16 h-1.5 bg-gray-200 mx-auto rounded-full animate-pulse"></div>
+          <div
+            class="h-8 bg-gray-200 rounded w-48 mx-auto mb-4 animate-pulse"
+          ></div>
+          <div
+            class="w-16 h-1.5 bg-gray-200 mx-auto rounded-full animate-pulse"
+          ></div>
         </div>
 
         <div class="flex overflow-x-hidden md:justify-center gap-8 pb-6">
           <!-- Tampilkan 3 Skeleton Horizontal -->
-          <div 
-            v-for="n in 3" 
+          <div
+            v-for="n in 3"
             :key="'skel-horz-' + n"
             class="min-w-[340px] md:min-w-[360px] max-w-[400px] flex-none bg-white rounded-2xl shadow-sm border border-gray-100 overflow-hidden animate-pulse"
           >
@@ -540,19 +543,25 @@ onUnmounted(() => {
       <!-- Skeleton Bagian 2: More Articles (Vertikal) -->
       <section class="mb-14">
         <div class="text-center mb-8">
-          <div class="h-8 bg-gray-200 rounded w-48 mx-auto mb-4 animate-pulse"></div>
-          <div class="w-16 h-1.5 bg-gray-200 mx-auto rounded-full animate-pulse"></div>
+          <div
+            class="h-8 bg-gray-200 rounded w-48 mx-auto mb-4 animate-pulse"
+          ></div>
+          <div
+            class="w-16 h-1.5 bg-gray-200 mx-auto rounded-full animate-pulse"
+          ></div>
         </div>
 
         <div class="flex flex-col gap-6 max-w-5xl mx-auto">
           <!-- Tampilkan 2 Skeleton Vertikal -->
-          <div 
-            v-for="n in 2" 
+          <div
+            v-for="n in 2"
             :key="'skel-vert-' + n"
             class="flex flex-col sm:flex-row bg-white rounded-2xl shadow-sm border border-gray-100 overflow-hidden animate-pulse"
           >
             <!-- Skeleton Gambar Vertikal -->
-            <div class="w-full sm:w-72 h-56 sm:h-auto bg-gray-300 flex-none"></div>
+            <div
+              class="w-full sm:w-72 h-56 sm:h-auto bg-gray-300 flex-none"
+            ></div>
             <!-- Skeleton Teks Vertikal -->
             <div class="p-6 md:p-8 flex flex-col justify-center flex-grow">
               <div class="h-4 bg-gray-300 rounded w-24 mb-3"></div>
@@ -711,7 +720,7 @@ onUnmounted(() => {
 import { ref, computed, onMounted, onUnmounted } from "vue";
 
 const config = useRuntimeConfig();
-const baseURL = config.public.apiBase || "http://31.97.60.207:8246";
+const baseURL = config.public.apiBase || "https://back.kecilungresto.com";
 
 // --- STATE MANAJEMEN ---
 const allArticles = ref([]);

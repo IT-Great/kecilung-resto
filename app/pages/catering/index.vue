@@ -85,7 +85,7 @@
 </template>
 
 <script setup>
-const baseURL = "http://31.97.60.207:8246/api";
+const baseURL = "https://back.kecilungresto.com/api";
 
 // Mengambil data paket katering dari backend
 const { data: res, pending } = useFetch(`${baseURL}/catering/packages`, {
@@ -111,28 +111,28 @@ const caterings = computed(() => res.value?.data || []);
       </div>
 
       <!-- SKELETON LOADING STATE -->
-      <div 
-        v-if="pending" 
+      <div
+        v-if="pending"
         class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8"
       >
         <!-- Tampilkan 6 kerangka skeleton untuk mengisi grid awal -->
-        <div 
-          v-for="n in 6" 
+        <div
+          v-for="n in 6"
           :key="'skeleton-' + n"
           class="bg-white rounded-2xl shadow-md overflow-hidden animate-pulse flex flex-col h-full"
         >
           <!-- Skeleton Thumbnail (h-64 menyesuaikan desain asli) -->
           <div class="h-64 bg-gray-300 w-full"></div>
-          
+
           <div class="p-6 flex-1 flex flex-col">
             <!-- Skeleton Judul -->
             <div class="h-8 bg-gray-300 rounded w-3/4 mb-4"></div>
-            
+
             <!-- Skeleton Deskripsi (3 baris untuk line-clamp-3) -->
             <div class="h-4 bg-gray-200 rounded w-full mb-2"></div>
             <div class="h-4 bg-gray-200 rounded w-11/12 mb-2"></div>
             <div class="h-4 bg-gray-200 rounded w-4/5 mb-6"></div>
-            
+
             <!-- Skeleton Link Booking di bagian bawah -->
             <div class="mt-auto h-5 bg-gray-300 rounded w-1/2"></div>
           </div>
@@ -212,7 +212,7 @@ const caterings = computed(() => res.value?.data || []);
 </template>
 
 <script setup>
-const baseURL = "http://31.97.60.207:8246/api";
+const baseURL = "https://back.kecilungresto.com/api";
 
 // Mengambil data paket katering dari backend
 const { data: res, pending } = useFetch(`${baseURL}/catering/packages`, {

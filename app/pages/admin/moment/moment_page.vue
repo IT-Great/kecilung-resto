@@ -179,7 +179,7 @@
 import Swal from "sweetalert2";
 definePageMeta({ layout: "admin", middleware: "auth" });
 
-const baseURL = "http://31.97.60.207:8246/api";
+const baseURL = "https://back.kecilungresto.com/api";
 
 // PERUBAHAN: Endpoint ke /moments/packages
 const {

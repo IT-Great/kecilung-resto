@@ -86,7 +86,7 @@ const isLoading = ref(true);
 const fetchArticleDetail = async () => {
   try {
     const res = await $fetch(
-      `${config.public.apiBase || "http://31.97.60.207:8246"}/api/articles/${articleId}`,
+      `${config.public.apiBase || "https://back.kecilungresto.com"}/api/articles/${articleId}`,
     );
     if (res.data) {
       article.value = res.data;

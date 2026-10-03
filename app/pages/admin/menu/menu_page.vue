@@ -91,7 +91,7 @@ definePageMeta({
   layout: "admin",
 });
 
-const baseURL = "http://31.97.60.207:8246/api";
+const baseURL = "https://back.kecilungresto.com/api";
 const { data: response, pending, refresh } = await useFetch(`${baseURL}/menus`);
 const menus = computed(() => response.value?.data || []);
 
@@ -153,7 +153,7 @@ const deleteMenu = async (id) => {
 <script setup>
 definePageMeta({ layout: "admin" });
 
-const baseURL = "http://31.97.60.207:8246/api";
+const baseURL = "https://back.kecilungresto.com/api";
 const { data: response, pending, refresh } = await useFetch(`${baseURL}/menus`);
 const menus = computed(() => response.value?.data || []);
 
@@ -237,7 +237,7 @@ const deleteMenu = async (id) => {
 <script setup>
 definePageMeta({ layout: "admin", middleware: "auth" });
 
-const baseURL = "http://31.97.60.207:8246/api";
+const baseURL = "https://back.kecilungresto.com/api";
 
 // PERUBAHAN: Gunakan useLazyFetch tanpa "await"
 const { data: response, pending, refresh } = useLazyFetch(`${baseURL}/menus`);
@@ -515,7 +515,7 @@ const deleteMenu = async (id) => {
 import { ref, computed, watch } from "vue";
 definePageMeta({ layout: "admin", middleware: "auth" });
 
-const baseURL = "http://31.97.60.207:8246/api";
+const baseURL = "https://back.kecilungresto.com/api";
 
 const { data: response, pending, refresh } = useLazyFetch(`${baseURL}/menus`);
 const allMenus = computed(() => response.value?.data || []);

@@ -69,7 +69,7 @@ definePageMeta({
 const route = useRoute();
 const router = useRouter();
 const id = route.params.id;
-const baseURL = "http://31.97.60.207:8246/api";
+const baseURL = "https://back.kecilungresto.com/api";
 
 // Ambil daftar kategori
 const { data: catResponse } = await useFetch(`${baseURL}/categories`);
@@ -192,7 +192,7 @@ definePageMeta({ layout: "admin", middleware: "auth" });
 const route = useRoute();
 const router = useRouter();
 const id = route.params.id;
-const baseURL = "http://31.97.60.207:8246/api";
+const baseURL = "https://back.kecilungresto.com/api";
 
 const { data: catResponse } = await useFetch(`${baseURL}/categories`);
 const categories = computed(() => catResponse.value?.data || []);

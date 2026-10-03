@@ -63,7 +63,7 @@ const isLoading = ref(false);
 const handleRequestOTP = async () => {
   isLoading.value = true;
   try {
-    const baseURL = config.public.apiBase || "http://31.97.60.207:8246";
+    const baseURL = config.public.apiBase || "https://back.kecilungresto.com";
     await $fetch(`${baseURL}/api/auth/forgot-password`, {
       method: "POST",
       body: { email: email.value },

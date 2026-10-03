@@ -352,7 +352,7 @@
 </template>
 
 <script setup>
-const baseURL = "http://31.97.60.207:8246/api";
+const baseURL = "https://back.kecilungresto.com/api";
 
 // Fetch data kategori untuk grid interaktif
 const { data: categoryResponse, pending } = useFetch(`${baseURL}/categories`, {

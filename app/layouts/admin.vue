@@ -630,7 +630,7 @@ onBeforeUnmount(() => {
 // === LOGIKA WEBSOCKET ===
 const initWebSocket = () => {
   // Ganti https/http menjadi wss/ws
-  const baseURL = config.public.apiBase || "http://31.97.60.207:8246";
+  const baseURL = config.public.apiBase || "https://back.kecilungresto.com";
   const wsURL = baseURL.replace(/^http/, "ws") + "/api/ws";
 
   ws = new WebSocket(wsURL);

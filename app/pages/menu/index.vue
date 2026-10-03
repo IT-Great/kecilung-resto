@@ -218,7 +218,7 @@
 </template>
 
 <script setup>
-const baseURL = "http://31.97.60.207:8246/api";
+const baseURL = "https://back.kecilungresto.com/api";
 
 // 1. Fetch seluruh Kategori
 const { data: catRes, pending: pendingCategories } = useFetch(

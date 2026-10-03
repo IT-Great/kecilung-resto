@@ -135,7 +135,7 @@ const form = ref({
 const submitContact = async () => {
   isSubmitting.value = true;
   try {
-    const baseURL = config.public.apiBase || 'http://31.97.60.207:8246';
+    const baseURL = config.public.apiBase || 'https://back.kecilungresto.com';
     
     // Kirim data sebagai JSON
     await $fetch(`${baseURL}/api/contacts`, {
@@ -310,7 +310,7 @@ import Swal from 'sweetalert2';
 
 const config = useRuntimeConfig();
 const isSubmitting = ref(false);
-const baseURL = config.public.apiBase || 'http://31.97.60.207:8246';
+const baseURL = config.public.apiBase || 'https://back.kecilungresto.com';
 
 // Form State
 const form = ref({
@@ -784,7 +784,7 @@ import Swal from "sweetalert2";
 
 const config = useRuntimeConfig();
 const isSubmitting = ref(false);
-const baseURL = config.public.apiBase || "http://31.97.60.207:8246";
+const baseURL = config.public.apiBase || "https://back.kecilungresto.com";
 
 const form = ref({ full_name: "", email: "", phone: "", description: "" });
 

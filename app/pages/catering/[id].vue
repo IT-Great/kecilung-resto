@@ -41,7 +41,7 @@
 import Swal from 'sweetalert2';
 
 const route = useRoute();
-const baseURL = "http://31.97.60.207:8246/api";
+const baseURL = "https://back.kecilungresto.com/api";
 
 const { data: res } = await useFetch(`${baseURL}/catering/packages/${route.params.id}`);
 const catering = computed(() => res.value?.data);
@@ -150,7 +150,7 @@ const submitBooking = async () => {
 import Swal from 'sweetalert2';
 
 const route = useRoute();
-const baseURL = "http://31.97.60.207:8246/api";
+const baseURL = "https://back.kecilungresto.com/api";
 
 // Fetch data menggunakan useLazyFetch agar tidak freeze saat pindah halaman
 const { data: res, pending } = useFetch(`${baseURL}/catering/packages/${route.params.id}`, {
@@ -451,7 +451,7 @@ const submitBooking = async () => {
 import Swal from "sweetalert2";
 
 const route = useRoute();
-const baseURL = "http://31.97.60.207:8246/api";
+const baseURL = "https://back.kecilungresto.com/api";
 
 // Fetch data katering utama
 const { data: res, pending } = useFetch(

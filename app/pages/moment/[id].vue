@@ -76,7 +76,7 @@
 import Swal from 'sweetalert2';
 
 const route = useRoute();
-const baseURL = "http://31.97.60.207:8246/api";
+const baseURL = "https://back.kecilungresto.com/api";
 
 // Fetch data menggunakan useFetch + lazy untuk SEO dan Load Instan
 const { data: res, pending } = useFetch(`${baseURL}/moments/packages/${route.params.id}`, {
@@ -387,7 +387,7 @@ import { ref, computed, watchEffect } from "vue";
 import { useRoute } from "vue-router";
 
 const route = useRoute();
-const baseURL = "http://31.97.60.207:8246/api";
+const baseURL = "https://back.kecilungresto.com/api";
 
 // Fetch data moment utama
 const { data: res, pending } = useFetch(

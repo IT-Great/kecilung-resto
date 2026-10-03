@@ -136,7 +136,7 @@ import { ref } from "vue";
 import Swal from "sweetalert2";
 definePageMeta({ layout: "admin", middleware: "auth" });
 
-const baseURL = "http://31.97.60.207:8246/api";
+const baseURL = "https://back.kecilungresto.com/api";
 const { data: res, refresh } = useLazyFetch(`${baseURL}/contacts`);
 const messages = computed(() => res.value?.data || []);
 

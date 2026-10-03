@@ -54,7 +54,7 @@ definePageMeta({
 
 const route = useRoute();
 const id = route.params.id;
-const baseURL = "http://31.97.60.207:8246/api";
+const baseURL = "https://back.kecilungresto.com/api";
 
 const { data: response, pending } = await useFetch(`${baseURL}/menus`);
 const menu = computed(() => {
@@ -127,7 +127,7 @@ definePageMeta({ layout: "admin", middleware: "auth" });
 
 const route = useRoute();
 const id = route.params.id;
-const baseURL = "http://31.97.60.207:8246/api";
+const baseURL = "https://back.kecilungresto.com/api";
 
 const { data: response, pending } = await useFetch(`${baseURL}/menus`);
 const menu = computed(() => {

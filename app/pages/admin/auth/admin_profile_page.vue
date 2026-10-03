@@ -54,7 +54,7 @@ import Swal from 'sweetalert2';
 definePageMeta({ layout: "admin", middleware: "auth" });
 
 const config = useRuntimeConfig();
-const baseURL = config.public.apiBase || 'http://31.97.60.207:8246';
+const baseURL = config.public.apiBase || 'https://back.kecilungresto.com';
 const isSubmitting = ref(false);
 
 const adminData = ref({ id: '', name: '', username: '', image_url: '' });
@@ -238,7 +238,7 @@ import Swal from "sweetalert2";
 definePageMeta({ layout: "admin", middleware: "auth" });
 
 const config = useRuntimeConfig();
-const baseURL = config.public.apiBase || "http://31.97.60.207:8246";
+const baseURL = config.public.apiBase || "https://back.kecilungresto.com";
 const isSubmitting = ref(false);
 
 const adminData = ref({

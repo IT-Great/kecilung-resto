@@ -84,7 +84,7 @@ const handleResetPassword = async () => {
 
   isLoading.value = true;
   try {
-    const baseURL = config.public.apiBase || "http://31.97.60.207:8246";
+    const baseURL = config.public.apiBase || "https://back.kecilungresto.com";
     await $fetch(`${baseURL}/api/auth/reset-password`, {
       method: "POST",
       body: { email: email.value, new_password: newPassword.value },

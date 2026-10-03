@@ -85,7 +85,7 @@ const form = ref({
 const handleLogin = async () => {
   isLoading.value = true;
   try {
-    const baseURL = config.public.apiBase || "http://31.97.60.207:8246";
+    const baseURL = config.public.apiBase || "https://back.kecilungresto.com";
     const res = await $fetch(`${baseURL}/api/auth/login`, {
       method: "POST",
       body: form.value,

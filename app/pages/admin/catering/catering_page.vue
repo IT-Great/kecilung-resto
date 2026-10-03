@@ -80,7 +80,7 @@
 import Swal from 'sweetalert2';
 definePageMeta({ layout: "admin" });
 
-const baseURL = "http://31.97.60.207:8246/api";
+const baseURL = "https://back.kecilungresto.com/api";
 
 // Ambil Data Paket
 const { data: res, pending, refresh } = useLazyFetch(`${baseURL}/catering/packages`);
@@ -265,7 +265,7 @@ const deleteCatering = async (id) => {
 import Swal from 'sweetalert2';
 definePageMeta({ layout: "admin", middleware: "auth" });
 
-const baseURL = "http://31.97.60.207:8246/api";
+const baseURL = "https://back.kecilungresto.com/api";
 
 const { data: res, pending, refresh } = useLazyFetch(`${baseURL}/catering/packages`);
 const caterings = computed(() => res.value?.data || []);
@@ -698,7 +698,7 @@ import { ref, computed, watch } from "vue";
 
 definePageMeta({ layout: "admin", middleware: "auth" });
 
-const baseURL = "http://31.97.60.207:8246/api";
+const baseURL = "https://back.kecilungresto.com/api";
 
 const {
   data: res,

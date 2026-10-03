@@ -73,7 +73,7 @@ const articles = ref([]);
 const fetchArticles = async () => {
   try {
     const res = await $fetch(
-      `${config.public.apiBase || "http://31.97.60.207:8246"}/api/articles`,
+      `${config.public.apiBase || "https://back.kecilungresto.com"}/api/articles`,
     );
     articles.value = res.data || [];
   } catch (error) {
@@ -95,7 +95,7 @@ const confirmDelete = (id) => {
     if (result.isConfirmed) {
       try {
         await $fetch(
-          `${config.public.apiBase || "http://31.97.60.207:8246"}/api/articles/${id}`,
+          `${config.public.apiBase || "https://back.kecilungresto.com"}/api/articles/${id}`,
           { method: "DELETE" },
         );
         Swal.fire("Terhapus!", "Artikel berhasil dihapus.", "success");
@@ -378,7 +378,7 @@ const fetchArticles = async () => {
   isLoading.value = true;
   try {
     const res = await $fetch(
-      `${config.public.apiBase || "http://31.97.60.207:8246"}/api/articles`,
+      `${config.public.apiBase || "https://back.kecilungresto.com"}/api/articles`,
     );
     allArticles.value = res.data || [];
   } catch (error) {
@@ -402,7 +402,7 @@ const confirmDelete = (id) => {
     if (result.isConfirmed) {
       try {
         await $fetch(
-          `${config.public.apiBase || "http://31.97.60.207:8246"}/api/articles/${id}`,
+          `${config.public.apiBase || "https://back.kecilungresto.com"}/api/articles/${id}`,
           { method: "DELETE" },
         );
         Swal.fire("Terhapus!", "Artikel berhasil dihapus.", "success");

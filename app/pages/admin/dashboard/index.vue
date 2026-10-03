@@ -269,7 +269,7 @@ import { ref, computed, onMounted } from "vue";
 definePageMeta({ layout: "admin", middleware: "auth" });
 
 const config = useRuntimeConfig();
-const baseURL = config.public.apiBase || "http://31.97.60.207:8246/api";
+const baseURL = config.public.apiBase || "https://back.kecilungresto.com/api";
 
 // State Data Profil Admin (dari localStorage)
 const currentAdmin = ref({ name: "Admin" });
@@ -448,13 +448,30 @@ watchEffect(() => {
         <NuxtLink to="/admin/category/category_page" class="stat-card group">
           <div class="flex items-center gap-4">
             <div class="icon-box bg-orange-100 text-orange-600">
-              <svg xmlns="http://www.w3.org/2000/svg" class="h-7 w-7" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 11H5m14 0a2 2 0 012 2v6a2 2 0 01-2 2H5a2 2 0 01-2-2v-6a2 2 0 012-2m14 0V9a2 2 0 00-2-2M5 11V9a2 2 0 012-2m0 0V5a2 2 0 012-2h6a2 2 0 012 2v2M7 7h10" />
+              <svg
+                xmlns="http://www.w3.org/2000/svg"
+                class="h-7 w-7"
+                fill="none"
+                viewBox="0 0 24 24"
+                stroke="currentColor"
+              >
+                <path
+                  stroke-linecap="round"
+                  stroke-linejoin="round"
+                  stroke-width="2"
+                  d="M19 11H5m14 0a2 2 0 012 2v6a2 2 0 01-2 2H5a2 2 0 01-2-2v-6a2 2 0 012-2m14 0V9a2 2 0 00-2-2M5 11V9a2 2 0 012-2m0 0V5a2 2 0 012-2h6a2 2 0 012 2v2M7 7h10"
+                />
               </svg>
             </div>
             <div>
-              <p class="text-sm font-medium text-gray-500 group-hover:text-orange-700">Total Kategori Menu</p>
-              <p class="text-3xl font-bold text-gray-900 mt-1">{{ stats.categories }}</p>
+              <p
+                class="text-sm font-medium text-gray-500 group-hover:text-orange-700"
+              >
+                Total Kategori Menu
+              </p>
+              <p class="text-3xl font-bold text-gray-900 mt-1">
+                {{ stats.categories }}
+              </p>
             </div>
           </div>
         </NuxtLink>
@@ -463,13 +480,30 @@ watchEffect(() => {
         <NuxtLink to="/admin/menu/menu_page" class="stat-card group">
           <div class="flex items-center gap-4">
             <div class="icon-box bg-orange-100 text-orange-600">
-              <svg xmlns="http://www.w3.org/2000/svg" class="h-7 w-7" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12h6m-6 4h6m2 5H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z" />
+              <svg
+                xmlns="http://www.w3.org/2000/svg"
+                class="h-7 w-7"
+                fill="none"
+                viewBox="0 0 24 24"
+                stroke="currentColor"
+              >
+                <path
+                  stroke-linecap="round"
+                  stroke-linejoin="round"
+                  stroke-width="2"
+                  d="M9 12h6m-6 4h6m2 5H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z"
+                />
               </svg>
             </div>
             <div>
-              <p class="text-sm font-medium text-gray-500 group-hover:text-orange-700">Total Item Menu</p>
-              <p class="text-3xl font-bold text-gray-900 mt-1">{{ stats.menus }}</p>
+              <p
+                class="text-sm font-medium text-gray-500 group-hover:text-orange-700"
+              >
+                Total Item Menu
+              </p>
+              <p class="text-3xl font-bold text-gray-900 mt-1">
+                {{ stats.menus }}
+              </p>
             </div>
           </div>
         </NuxtLink>
@@ -478,13 +512,30 @@ watchEffect(() => {
         <NuxtLink to="/admin/article/article_page" class="stat-card group">
           <div class="flex items-center gap-4">
             <div class="icon-box bg-orange-100 text-orange-600">
-              <svg xmlns="http://www.w3.org/2000/svg" class="h-7 w-7" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 20H5a2 2 0 01-2-2V6a2 2 0 012-2h10a2 2 0 012 2v1m2 13a2 2 0 01-2-2V7m2 13a2 2 0 002-2V9.5a2.5 2.5 0 00-2.5-2.5H14" />
+              <svg
+                xmlns="http://www.w3.org/2000/svg"
+                class="h-7 w-7"
+                fill="none"
+                viewBox="0 0 24 24"
+                stroke="currentColor"
+              >
+                <path
+                  stroke-linecap="round"
+                  stroke-linejoin="round"
+                  stroke-width="2"
+                  d="M19 20H5a2 2 0 01-2-2V6a2 2 0 012-2h10a2 2 0 012 2v1m2 13a2 2 0 01-2-2V7m2 13a2 2 0 002-2V9.5a2.5 2.5 0 00-2.5-2.5H14"
+                />
               </svg>
             </div>
             <div>
-              <p class="text-sm font-medium text-gray-500 group-hover:text-orange-700">Total Artikel/Berita</p>
-              <p class="text-3xl font-bold text-gray-900 mt-1">{{ stats.articles }}</p>
+              <p
+                class="text-sm font-medium text-gray-500 group-hover:text-orange-700"
+              >
+                Total Artikel/Berita
+              </p>
+              <p class="text-3xl font-bold text-gray-900 mt-1">
+                {{ stats.articles }}
+              </p>
             </div>
           </div>
         </NuxtLink>
@@ -493,46 +544,105 @@ watchEffect(() => {
         <NuxtLink to="/admin/contact/contact_page" class="stat-card group">
           <div class="flex items-center gap-4">
             <div class="icon-box bg-orange-100 text-orange-600">
-              <svg xmlns="http://www.w3.org/2000/svg" class="h-7 w-7" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 8l7.89 5.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z" />
+              <svg
+                xmlns="http://www.w3.org/2000/svg"
+                class="h-7 w-7"
+                fill="none"
+                viewBox="0 0 24 24"
+                stroke="currentColor"
+              >
+                <path
+                  stroke-linecap="round"
+                  stroke-linejoin="round"
+                  stroke-width="2"
+                  d="M3 8l7.89 5.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z"
+                />
               </svg>
             </div>
             <div>
-              <p class="text-sm font-medium text-gray-500 group-hover:text-orange-700">Pesan Belum Dibalas</p>
+              <p
+                class="text-sm font-medium text-gray-500 group-hover:text-orange-700"
+              >
+                Pesan Belum Dibalas
+              </p>
               <div class="flex items-baseline gap-2 mt-1">
-                <p class="text-3xl font-bold text-gray-900">{{ stats.unrepliedMessages }}</p>
-                <p class="text-sm text-gray-500">/ {{ stats.totalMessages }} total</p>
+                <p class="text-3xl font-bold text-gray-900">
+                  {{ stats.unrepliedMessages }}
+                </p>
+                <p class="text-sm text-gray-500">
+                  / {{ stats.totalMessages }} total
+                </p>
               </div>
             </div>
           </div>
         </NuxtLink>
 
         <!-- Card: Catering Booking -->
-        <NuxtLink to="/admin/catering/booking_page" class="stat-card group sm:col-span-2 xl:col-span-1">
+        <NuxtLink
+          to="/admin/catering/booking_page"
+          class="stat-card group sm:col-span-2 xl:col-span-1"
+        >
           <div class="flex items-center gap-4">
             <div class="icon-box bg-orange-100 text-orange-600">
-              <svg xmlns="http://www.w3.org/2000/svg" class="h-7 w-7" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M21 15.546c-.523 0-1.046.151-1.5.454a2.704 2.704 0 01-3 0 2.704 2.704 0 00-3 0 2.704 2.704 0 01-3 0 2.704 2.704 0 00-3 0 2.704 2.704 0 01-3 0 2.701 2.701 0 00-1.5-.454M9 6v2m3-2v2m3-2v2M9 3h.01M12 3h.01M15 3h.01M21 21v-7a2 2 0 00-2-2H5a2 2 0 00-2 2v7h18zm-3-9v-2a2 2 0 00-2-2H8a2 2 0 00-2 2v2h12z" />
+              <svg
+                xmlns="http://www.w3.org/2000/svg"
+                class="h-7 w-7"
+                fill="none"
+                viewBox="0 0 24 24"
+                stroke="currentColor"
+              >
+                <path
+                  stroke-linecap="round"
+                  stroke-linejoin="round"
+                  stroke-width="2"
+                  d="M21 15.546c-.523 0-1.046.151-1.5.454a2.704 2.704 0 01-3 0 2.704 2.704 0 00-3 0 2.704 2.704 0 01-3 0 2.704 2.704 0 00-3 0 2.704 2.704 0 01-3 0 2.701 2.701 0 00-1.5-.454M9 6v2m3-2v2m3-2v2M9 3h.01M12 3h.01M15 3h.01M21 21v-7a2 2 0 00-2-2H5a2 2 0 00-2 2v7h18zm-3-9v-2a2 2 0 00-2-2H8a2 2 0 00-2 2v2h12z"
+                />
               </svg>
             </div>
             <div class="flex-1">
-              <p class="text-sm font-medium text-gray-500 group-hover:text-orange-700">Katering Aktif (APPROVED)</p>
-              <p class="text-3xl font-bold text-gray-900 mt-1">{{ stats.cateringBookings }}</p>
+              <p
+                class="text-sm font-medium text-gray-500 group-hover:text-orange-700"
+              >
+                Katering Aktif (APPROVED)
+              </p>
+              <p class="text-3xl font-bold text-gray-900 mt-1">
+                {{ stats.cateringBookings }}
+              </p>
             </div>
           </div>
         </NuxtLink>
 
         <!-- Card: Moment Booking -->
-        <NuxtLink to="/admin/moment/booking_page" class="stat-card group sm:col-span-2 xl:col-span-1">
+        <NuxtLink
+          to="/admin/moment/booking_page"
+          class="stat-card group sm:col-span-2 xl:col-span-1"
+        >
           <div class="flex items-center gap-4">
             <div class="icon-box bg-orange-100 text-orange-600">
-              <svg xmlns="http://www.w3.org/2000/svg" class="h-7 w-7" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 3v4M3 5h4M6 17v4m-2-2h4m5-16l2.286 6.857L21 12l-5.714 2.143L13 21l-2.286-6.857L5 12l5.714-2.143L13 3z" />
+              <svg
+                xmlns="http://www.w3.org/2000/svg"
+                class="h-7 w-7"
+                fill="none"
+                viewBox="0 0 24 24"
+                stroke="currentColor"
+              >
+                <path
+                  stroke-linecap="round"
+                  stroke-linejoin="round"
+                  stroke-width="2"
+                  d="M5 3v4M3 5h4M6 17v4m-2-2h4m5-16l2.286 6.857L21 12l-5.714 2.143L13 21l-2.286-6.857L5 12l5.714-2.143L13 3z"
+                />
               </svg>
             </div>
             <div class="flex-1">
-              <p class="text-sm font-medium text-gray-500 group-hover:text-orange-700">Moment Aktif (APPROVED)</p>
-              <p class="text-3xl font-bold text-gray-900 mt-1">{{ stats.momentBookings }}</p>
+              <p
+                class="text-sm font-medium text-gray-500 group-hover:text-orange-700"
+              >
+                Moment Aktif (APPROVED)
+              </p>
+              <p class="text-3xl font-bold text-gray-900 mt-1">
+                {{ stats.momentBookings }}
+              </p>
             </div>
           </div>
         </NuxtLink>
@@ -540,10 +650,13 @@ watchEffect(() => {
 
       <!-- SECTION CHART -->
       <div class="grid grid-cols-1 lg:grid-cols-3 gap-6">
-        
         <!-- Line Chart: Pertumbuhan Booking -->
-        <div class="lg:col-span-2 bg-white p-6 rounded-2xl shadow-sm border border-gray-100">
-          <h2 class="text-lg font-bold text-gray-800 mb-4">Tren Booking (6 Bulan Terakhir)</h2>
+        <div
+          class="lg:col-span-2 bg-white p-6 rounded-2xl shadow-sm border border-gray-100"
+        >
+          <h2 class="text-lg font-bold text-gray-800 mb-4">
+            Tren Booking (6 Bulan Terakhir)
+          </h2>
           <div class="h-72">
             <!-- ClientOnly mencegah error SSR karena Chart.js butuh DOM Canvas -->
             <ClientOnly>
@@ -554,14 +667,18 @@ watchEffect(() => {
 
         <!-- Doughnut Chart: Proporsi Kategori Menu -->
         <div class="bg-white p-6 rounded-2xl shadow-sm border border-gray-100">
-          <h2 class="text-lg font-bold text-gray-800 mb-4">Produk per Kategori</h2>
+          <h2 class="text-lg font-bold text-gray-800 mb-4">
+            Produk per Kategori
+          </h2>
           <div class="h-72 flex justify-center">
             <ClientOnly>
-              <DoughnutChart :data="categoryChartData" :options="doughnutChartOptions" />
+              <DoughnutChart
+                :data="categoryChartData"
+                :options="doughnutChartOptions"
+              />
             </ClientOnly>
           </div>
         </div>
-
       </div>
     </div>
   </div>
@@ -579,19 +696,26 @@ import {
   Title,
   Tooltip,
   Legend,
-  ArcElement
+  ArcElement,
 } from "chart.js";
 import { Line as LineChart, Doughnut as DoughnutChart } from "vue-chartjs";
 
 // Registrasi modul ChartJS
 ChartJS.register(
-  CategoryScale, LinearScale, PointElement, LineElement, Title, Tooltip, Legend, ArcElement
+  CategoryScale,
+  LinearScale,
+  PointElement,
+  LineElement,
+  Title,
+  Tooltip,
+  Legend,
+  ArcElement,
 );
 
 definePageMeta({ layout: "admin", middleware: "auth" });
 
 const config = useRuntimeConfig();
-const baseURL = config.public.apiBase || "http://31.97.60.207:8246/api";
+const baseURL = config.public.apiBase || "https://back.kecilungresto.com/api";
 const currentAdmin = ref({ name: "Admin" });
 
 const stats = ref({
@@ -606,7 +730,10 @@ const stats = ref({
 
 const currentDate = computed(() => {
   return new Date().toLocaleDateString("id-ID", {
-    weekday: "long", year: "numeric", month: "long", day: "numeric",
+    weekday: "long",
+    year: "numeric",
+    month: "long",
+    day: "numeric",
   });
 });
 
@@ -616,15 +743,41 @@ onMounted(() => {
 });
 
 // Fetch Data
-const { data: resCategories, pending: pCat } = useLazyFetch(`${baseURL}/categories`);
+const { data: resCategories, pending: pCat } = useLazyFetch(
+  `${baseURL}/categories`,
+);
 const { data: resMenus, pending: pMenu } = useLazyFetch(`${baseURL}/menus`);
-const { data: resArticles, pending: pArt } = useLazyFetch(`${baseURL}/articles`);
-const { data: resCatBookings, pending: pCBook } = useLazyFetch(`${baseURL}/catering/bookings`);
-const { data: resMomBookings, pending: pMBook } = useLazyFetch(`${baseURL}/moments/bookings`);
-const { data: resContacts, pending: pCont } = useLazyFetch(`${baseURL}/contacts`);
+const { data: resArticles, pending: pArt } = useLazyFetch(
+  `${baseURL}/articles`,
+);
+const { data: resCatBookings, pending: pCBook } = useLazyFetch(
+  `${baseURL}/catering/bookings`,
+);
+const { data: resMomBookings, pending: pMBook } = useLazyFetch(
+  `${baseURL}/moments/bookings`,
+);
+const { data: resContacts, pending: pCont } = useLazyFetch(
+  `${baseURL}/contacts`,
+);
 
-const pending = computed(() => pCat.value || pMenu.value || pArt.value || pCBook.value || pMBook.value || pCont.value);
-const error = computed(() => resCategories.value?.error || resMenus.value?.error || resArticles.value?.error || resCatBookings.value?.error || resMomBookings.value?.error || resContacts.value?.error);
+const pending = computed(
+  () =>
+    pCat.value ||
+    pMenu.value ||
+    pArt.value ||
+    pCBook.value ||
+    pMBook.value ||
+    pCont.value,
+);
+const error = computed(
+  () =>
+    resCategories.value?.error ||
+    resMenus.value?.error ||
+    resArticles.value?.error ||
+    resCatBookings.value?.error ||
+    resMomBookings.value?.error ||
+    resContacts.value?.error,
+);
 
 // ----------------------------------------------------
 // LOGIKA PEMROSESAN DATA GRAFIK
@@ -634,16 +787,28 @@ const error = computed(() => resCategories.value?.error || resMenus.value?.error
 const bookingChartData = ref({
   labels: [], // e.g. ["Mei", "Jun", "Jul", "Ags", "Sep", "Okt"]
   datasets: [
-    { label: "Catering", data: [], borderColor: "#f97316", backgroundColor: "#f97316", tension: 0.3 },
-    { label: "Moment", data: [], borderColor: "#3b82f6", backgroundColor: "#3b82f6", tension: 0.3 }
-  ]
+    {
+      label: "Catering",
+      data: [],
+      borderColor: "#f97316",
+      backgroundColor: "#f97316",
+      tension: 0.3,
+    },
+    {
+      label: "Moment",
+      data: [],
+      borderColor: "#3b82f6",
+      backgroundColor: "#3b82f6",
+      tension: 0.3,
+    },
+  ],
 });
 
 const lineChartOptions = {
   responsive: true,
   maintainAspectRatio: false,
   plugins: { legend: { position: "bottom" } },
-  scales: { y: { beginAtZero: true, ticks: { stepSize: 1 } } }
+  scales: { y: { beginAtZero: true, ticks: { stepSize: 1 } } },
 };
 
 // 2. Setup Data Doughnut Chart (Menu Category Proportion)
@@ -652,16 +817,24 @@ const categoryChartData = ref({
   datasets: [
     {
       data: [],
-      backgroundColor: ["#f97316", "#3b82f6", "#10b981", "#ef4444", "#8b5cf6", "#f59e0b", "#64748b"],
-      hoverOffset: 4
-    }
-  ]
+      backgroundColor: [
+        "#f97316",
+        "#3b82f6",
+        "#10b981",
+        "#ef4444",
+        "#8b5cf6",
+        "#f59e0b",
+        "#64748b",
+      ],
+      hoverOffset: 4,
+    },
+  ],
 });
 
 const doughnutChartOptions = {
   responsive: true,
   maintainAspectRatio: false,
-  plugins: { legend: { position: "bottom" } }
+  plugins: { legend: { position: "bottom" } },
 };
 
 // ----------------------------------------------------
@@ -669,33 +842,37 @@ const doughnutChartOptions = {
 // ----------------------------------------------------
 watchEffect(() => {
   // Update Basic Stats
-  if (resCategories.value?.data) stats.value.categories = resCategories.value.data.length;
+  if (resCategories.value?.data)
+    stats.value.categories = resCategories.value.data.length;
   if (resMenus.value?.data) stats.value.menus = resMenus.value.data.length;
-  if (resArticles.value?.data) stats.value.articles = resArticles.value.data.length;
+  if (resArticles.value?.data)
+    stats.value.articles = resArticles.value.data.length;
   if (resContacts.value?.data) {
     stats.value.totalMessages = resContacts.value.data.length;
-    stats.value.unrepliedMessages = resContacts.value.data.filter(c => !c.is_replied).length;
+    stats.value.unrepliedMessages = resContacts.value.data.filter(
+      (c) => !c.is_replied,
+    ).length;
   }
 
   // A. OLAH DATA DOUGHNUT CHART (Hitung jumlah menu per category_id)
   if (resCategories.value?.data && resMenus.value?.data) {
     const cats = resCategories.value.data;
     const menus = resMenus.value.data;
-    
+
     // Siapkan array penghitung
     const catLabels = [];
     const catCounts = [];
 
-    cats.forEach(c => {
+    cats.forEach((c) => {
       catLabels.push(c.name);
       // Hitung berapa menu yang category_id-nya sama dengan id kategori ini
-      const count = menus.filter(m => m.category_id === c.id).length;
+      const count = menus.filter((m) => m.category_id === c.id).length;
       catCounts.push(count);
     });
 
     categoryChartData.value = {
       labels: catLabels,
-      datasets: [{ ...categoryChartData.value.datasets[0], data: catCounts }]
+      datasets: [{ ...categoryChartData.value.datasets[0], data: catCounts }],
     };
   }
 
@@ -705,14 +882,31 @@ watchEffect(() => {
     const momBookings = resMomBookings.value.data;
 
     // Filter hanya yang APPROVED untuk statistik atas
-    stats.value.cateringBookings = catBookings.filter(b => b.status === "APPROVED").length;
-    stats.value.momentBookings = momBookings.filter(b => b.status === "APPROVED").length;
+    stats.value.cateringBookings = catBookings.filter(
+      (b) => b.status === "APPROVED",
+    ).length;
+    stats.value.momentBookings = momBookings.filter(
+      (b) => b.status === "APPROVED",
+    ).length;
 
     // Buat rentang 6 bulan terakhir
-    const monthNames = ["Jan", "Feb", "Mar", "Apr", "Mei", "Jun", "Jul", "Ags", "Sep", "Okt", "Nov", "Des"];
+    const monthNames = [
+      "Jan",
+      "Feb",
+      "Mar",
+      "Apr",
+      "Mei",
+      "Jun",
+      "Jul",
+      "Ags",
+      "Sep",
+      "Okt",
+      "Nov",
+      "Des",
+    ];
     const now = new Date();
     const last6MonthsLabels = [];
-    
+
     // Array untuk menampung hitungan per bulan
     const catTrend = [0, 0, 0, 0, 0, 0];
     const momTrend = [0, 0, 0, 0, 0, 0];
@@ -726,7 +920,9 @@ watchEffect(() => {
     // Fungsi penolong: Mencari index grafik berdasarkan bulan tanggal
     const getMonthIndex = (dateString) => {
       const d = new Date(dateString);
-      const diffMonths = (now.getFullYear() - d.getFullYear()) * 12 + (now.getMonth() - d.getMonth());
+      const diffMonths =
+        (now.getFullYear() - d.getFullYear()) * 12 +
+        (now.getMonth() - d.getMonth());
       // Jika diffMonths 0, artinya bulan ini (index 5)
       // Jika diffMonths 1, artinya bulan lalu (index 4)
       if (diffMonths >= 0 && diffMonths <= 5) {
@@ -736,13 +932,13 @@ watchEffect(() => {
     };
 
     // Hitung distribusi booking Catering
-    catBookings.forEach(b => {
+    catBookings.forEach((b) => {
       const idx = getMonthIndex(b.created_at);
       if (idx !== -1) catTrend[idx]++;
     });
 
     // Hitung distribusi booking Moment
-    momBookings.forEach(b => {
+    momBookings.forEach((b) => {
       const idx = getMonthIndex(b.created_at);
       if (idx !== -1) momTrend[idx]++;
     });
@@ -752,8 +948,8 @@ watchEffect(() => {
       labels: last6MonthsLabels,
       datasets: [
         { ...bookingChartData.value.datasets[0], data: catTrend },
-        { ...bookingChartData.value.datasets[1], data: momTrend }
-      ]
+        { ...bookingChartData.value.datasets[1], data: momTrend },
+      ],
     };
   }
 });
