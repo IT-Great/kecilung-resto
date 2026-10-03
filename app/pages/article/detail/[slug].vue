@@ -76,10 +76,14 @@
 import { ref, onMounted } from "vue";
 import { useRoute } from "vue-router";
 
-const route = useRoute();
+// const route = useRoute();
 const config = useRuntimeConfig();
 
-const articleId = route.params.id;
+// const articleId = route.params.id;
+
+const route = useRoute();
+const articleSlug = route.params.slug;
+
 const article = ref(null);
 const isLoading = ref(true);
 

@@ -601,7 +601,7 @@ onUnmounted(() => {
           <NuxtLink
             v-for="article in horizontalArticles"
             :key="'horz-' + article.id"
-            :to="`/article/detail/${article.id}`"
+            :to="`/article/detail/${article.slug}`"
             class="min-w-[340px] md:min-w-[360px] max-w-[400px] flex-none bg-white rounded-2xl shadow-sm hover:shadow-xl transition-all duration-300 overflow-hidden snap-start border border-gray-100 group"
           >
             <div class="w-full h-56 overflow-hidden relative bg-gray-100">
@@ -649,7 +649,7 @@ onUnmounted(() => {
           <NuxtLink
             v-for="article in verticalArticles"
             :key="'vert-' + article.id"
-            :to="`/article/detail/${article.id}`"
+            :to="`/article/detail/${article.slug}`"
             class="flex flex-col sm:flex-row bg-white rounded-2xl shadow-sm hover:shadow-md transition-all duration-300 overflow-hidden border border-gray-100 group"
           >
             <div
