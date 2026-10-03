@@ -235,12 +235,12 @@ onMounted(() => {
               <td class="p-3 truncate max-w-xs">{{ item.description }}</td>
               <td class="p-3 text-center space-x-2 whitespace-nowrap">
                 <NuxtLink
-                  :to="`/admin/article/detail/${item.id}`"
+                  :to="`/admin/article/detail/${item.slug}`"
                   class="text-green-600 hover:text-green-800 bg-green-50 px-2 py-1 rounded"
                   >Detail</NuxtLink
                 >
                 <NuxtLink
-                  :to="`/admin/article/edit/${item.id}`"
+                  :to="`/admin/article/edit/${item.slug}`"
                   class="text-blue-600 hover:text-blue-800 bg-blue-50 px-2 py-1 rounded"
                   >Edit</NuxtLink
                 >
