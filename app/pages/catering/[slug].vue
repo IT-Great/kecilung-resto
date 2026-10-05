@@ -448,40 +448,92 @@ const submitBooking = async () => {
 </template>
 
 <script setup>
+// import Swal from "sweetalert2";
+
+// const route = useRoute();
+// const baseURL = "https://back.kecilungresto.com/api";
+
+// // Fetch data katering utama
+// const { data: res, pending } = useFetch(
+//   `${baseURL}/catering/packages/${route.params.id}`,
+//   {
+//     lazy: import.meta.client,
+//   },
+// );
+// const catering = computed(() => res.value?.data);
+
+// // Fetch data booking yang sudah APPROVED
+// const { data: approvedRes, refresh: refreshBookings } = useFetch(
+//   `${baseURL}/catering/packages/${route.params.id}/bookings`,
+//   {
+//     lazy: import.meta.client,
+//   },
+// );
+// const approvedBookings = computed(() => approvedRes.value?.data || []);
+
+// const activeImage = ref("");
+// watchEffect(() => {
+//   if (catering.value?.images && catering.value.images.length > 0) {
+//     activeImage.value = catering.value.images[0].image_url;
+//   }
+// });
+
+// const showModal = ref(false);
+// const isSubmitting = ref(false);
+// const openBookingModal = () => (showModal.value = true);
+
+// const form = ref({
+//   customer_name: "",
+//   phone: "",
+//   description: "",
+//   member_count: 1,
+//   booking_date: "",
+//   booking_end_date: "",
+//   catering_id: parseInt(route.params.id),
+// });
+
+// const submitBooking = async () => {
+//   isSubmitting.value = true;
+//   try {
+//     const payload = {
+//       ...form.value,
+//       booking_date: new Date(form.value.booking_date).toISOString(),
+//       booking_end_date: new Date(form.value.booking_end_date).toISOString(),
+//     };
+
+//     // Request POST ke Backend. Jika tabrakan, Backend otomatis kirim Error (Catch)
+//     await $fetch(`${baseURL}/catering/bookings`, {
+//       method: "POST",
+//       body: payload,
+//     });
+
+//     showModal.value = false;
+//     Swal.fire(
+//       "Berhasil!",
+//       "Pesanan berhasil diajukan tanpa tabrakan jadwal. Tunggu konfirmasi WA dari Admin.",
+//       "success",
+//     );
+//     refreshBookings(); // Update list jadwal terisi
+//   } catch (err) {
+//     // Pesan tabrakan dari Golang akan muncul di sini
+//     Swal.fire(
+//       "Jadwal Tidak Tersedia",
+//       err.response?._data?.error || "Gagal melakukan pemesanan.",
+//       "error",
+//     );
+//   } finally {
+//     isSubmitting.value = false;
+//   }
+// };
+
 import Swal from "sweetalert2";
+import { ref, computed, watchEffect } from "vue";
+import { useRoute } from "vue-router";
 
 const route = useRoute();
 const baseURL = "https://back.kecilungresto.com/api";
 
-// Fetch data katering utama
-const { data: res, pending } = useFetch(
-  `${baseURL}/catering/packages/${route.params.id}`,
-  {
-    lazy: import.meta.client,
-  },
-);
-const catering = computed(() => res.value?.data);
-
-// Fetch data booking yang sudah APPROVED
-const { data: approvedRes, refresh: refreshBookings } = useFetch(
-  `${baseURL}/catering/packages/${route.params.id}/bookings`,
-  {
-    lazy: import.meta.client,
-  },
-);
-const approvedBookings = computed(() => approvedRes.value?.data || []);
-
-const activeImage = ref("");
-watchEffect(() => {
-  if (catering.value?.images && catering.value.images.length > 0) {
-    activeImage.value = catering.value.images[0].image_url;
-  }
-});
-
-const showModal = ref(false);
-const isSubmitting = ref(false);
-const openBookingModal = () => (showModal.value = true);
-
+// 1. DEKLARASI STATE DULUAN
 const form = ref({
   customer_name: "",
   phone: "",
@@ -489,9 +541,42 @@ const form = ref({
   member_count: 1,
   booking_date: "",
   booking_end_date: "",
-  catering_id: parseInt(route.params.id),
+  catering_id: null, // Kosongkan, tunggu data API
 });
 
+const activeImage = ref("");
+const showModal = ref(false);
+const isSubmitting = ref(false);
+const openBookingModal = () => (showModal.value = true);
+
+// 2. FETCH DATA KATERING UTAMA (Menggunakan Slug)
+const { data: res, pending } = useFetch(
+  `${baseURL}/catering/packages/${route.params.slug}`,
+  { lazy: import.meta.client }
+);
+const catering = computed(() => res.value?.data);
+
+// 3. WATCHER (Mengisi form ID & gambar default)
+watchEffect(() => {
+  if (catering.value) {
+    form.value.catering_id = catering.value.id; // Tembakkan ID aslinya
+
+    if (catering.value.images && catering.value.images.length > 0) {
+      if (!activeImage.value) {
+        activeImage.value = catering.value.images[0].image_url;
+      }
+    }
+  }
+});
+
+// 4. FETCH DATA BOOKING APPROVED (Safe Null Fetch + Rute Baru)
+const { data: approvedRes, refresh: refreshBookings } = useFetch(
+  () => form.value.catering_id ? `${baseURL}/catering/bookings/approved/${form.value.catering_id}` : null,
+  { lazy: import.meta.client }
+);
+const approvedBookings = computed(() => approvedRes.value?.data || []);
+
+// 5. SUBMIT BOOKING
 const submitBooking = async () => {
   isSubmitting.value = true;
   try {
@@ -501,7 +586,6 @@ const submitBooking = async () => {
       booking_end_date: new Date(form.value.booking_end_date).toISOString(),
     };
 
-    // Request POST ke Backend. Jika tabrakan, Backend otomatis kirim Error (Catch)
     await $fetch(`${baseURL}/catering/bookings`, {
       method: "POST",
       body: payload,
@@ -511,15 +595,14 @@ const submitBooking = async () => {
     Swal.fire(
       "Berhasil!",
       "Pesanan berhasil diajukan tanpa tabrakan jadwal. Tunggu konfirmasi WA dari Admin.",
-      "success",
+      "success"
     );
-    refreshBookings(); // Update list jadwal terisi
+    refreshBookings();
   } catch (err) {
-    // Pesan tabrakan dari Golang akan muncul di sini
     Swal.fire(
       "Jadwal Tidak Tersedia",
       err.response?._data?.error || "Gagal melakukan pemesanan.",
-      "error",
+      "error"
     );
   } finally {
     isSubmitting.value = false;

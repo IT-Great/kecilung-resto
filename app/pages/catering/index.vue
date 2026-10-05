@@ -150,10 +150,16 @@ const caterings = computed(() => res.value?.data || []);
       <!-- Grid Daftar Katering (Data Aktual) -->
       <div v-else class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
         <!-- Kartu yang bisa diklik -->
-        <NuxtLink
+        <!-- <NuxtLink
           v-for="cat in caterings"
           :key="cat.id"
           :to="`/catering/${cat.id}`"
+          class="bg-white rounded-2xl shadow-md overflow-hidden group hover:shadow-2xl transition-all duration-300 transform hover:-translate-y-1 flex flex-col"
+        > -->
+        <NuxtLink
+          v-for="cat in caterings"
+          :key="cat.id"
+          :to="`/catering/${cat.slug}`" 
           class="bg-white rounded-2xl shadow-md overflow-hidden group hover:shadow-2xl transition-all duration-300 transform hover:-translate-y-1 flex flex-col"
         >
           <!-- Thumbnail Gambar -->
