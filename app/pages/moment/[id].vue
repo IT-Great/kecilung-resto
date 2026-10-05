@@ -399,12 +399,19 @@ const { data: res, pending } = useFetch(
 const momentData = computed(() => res.value?.data);
 
 // Fetch data booking yang sudah APPROVED khusus untuk paket Moment ini
+// const { data: approvedRes, refresh: refreshBookings } = useFetch(
+//   `${baseURL}/moments/packages/${route.params.id}/bookings`,
+//   {
+//     lazy: import.meta.client,
+//   },
+// );
+
 const { data: approvedRes, refresh: refreshBookings } = useFetch(
-  `${baseURL}/moments/packages/${route.params.id}/bookings`,
-  {
-    lazy: import.meta.client,
-  },
+  // Panggil URL baru dan tembakkan ID yang sudah ditangkap di dalam watcher form (bukan route.params.id lagi karena itu huruf)
+  () => `${baseURL}/moments/bookings/approved/${form.value.moment_id}`, 
+  { lazy: import.meta.client }
 );
+
 const approvedBookings = computed(() => approvedRes.value?.data || []);
 
 // Manajemen Gambar Aktif di Galeri
