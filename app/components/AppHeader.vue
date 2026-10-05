@@ -421,7 +421,7 @@ onMounted(() => {
                   v-else
                   v-for="cat in categories"
                   :key="cat.id"
-                  :to="`/menu/category/${cat.id}`"
+                  :to="`/menu/category/${cat.slug}`"
                   class="block px-4 py-2 text-sm text-gray-700 hover:bg-red-50 hover:text-red-700 transition-colors"
                 >
                   {{ cat.name }}
@@ -561,7 +561,7 @@ onMounted(() => {
                 v-else
                 v-for="cat in categories"
                 :key="cat.id"
-                :to="`/menu/category/${cat.id}`"
+                :to="`/menu/category/${cat.slug}`"
                 @click="isMobileMenuOpen = false"
                 class="text-base text-gray-600 hover:text-red-600 transition-colors"
               >
