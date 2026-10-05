@@ -455,30 +455,79 @@ const closeModal = () => {
 </template>
 
 <script setup>
+// const route = useRoute();
+// const categoryId = route.params.id;
+// const baseURL = "https://back.kecilungresto.com/api";
+
+// // 1. Fetch Menu berdasarkan ID Kategori
+// const { data: menuResponse, pending } = useFetch(
+//   `${baseURL}/menus/category/${categoryId}`,
+//   {
+//     lazy: import.meta.client, // <-- Kunci Rahasia SEO
+//   },
+// );
+// const menus = computed(() => menuResponse.value?.data || []);
+
+// // 2. Fetch data nama kategori secara paralel untuk judul banner
+// const { data: categoryResponse } = useFetch(`${baseURL}/categories`, {
+//   lazy: import.meta.client,
+// });
+// const currentCategoryName = computed(() => {
+//   const cats = categoryResponse.value?.data || [];
+//   const found = cats.find((c) => c.id == categoryId);
+//   return found ? found.name : "Daftar Menu";
+// });
+
+// // 3. Manajemen Modal
+// const isModalOpen = ref(false);
+// const selectedMenu = ref(null);
+
+// const openModal = (menu) => {
+//   selectedMenu.value = menu;
+//   isModalOpen.value = true;
+// };
+
+// const closeModal = () => {
+//   isModalOpen.value = false;
+//   // Sedikit jeda sebelum menghapus data agar animasi penutupan modal (jika ada) tidak kehilangan data secara instan
+//   setTimeout(() => {
+//     selectedMenu.value = null;
+//   }, 200);
+// };
+
+import { ref, computed } from "vue";
+import { useRoute } from "vue-router";
+
 const route = useRoute();
-const categoryId = route.params.id;
+const categorySlug = route.params.slug; // Ambil slug dari URL
 const baseURL = "https://back.kecilungresto.com/api";
 
-// 1. Fetch Menu berdasarkan ID Kategori
-const { data: menuResponse, pending } = useFetch(
-  `${baseURL}/menus/category/${categoryId}`,
+// 1. FETCH DATA KATEGORI BERDASARKAN SLUG (Smart Request)
+// Kita panggil API baru yang dibuat di backend agar mendapatkan ID aslinya.
+const { data: catResponse, pending: pendingCat } = useFetch(
+  `${baseURL}/categories/${categorySlug}`,
   {
-    lazy: import.meta.client, // <-- Kunci Rahasia SEO
-  },
+    lazy: import.meta.client,
+  }
+);
+const categoryData = computed(() => catResponse.value?.data);
+const currentCategoryName = computed(() => categoryData.value?.name || "Daftar Menu");
+const categoryId = computed(() => categoryData.value?.id);
+
+// 2. FETCH DAFTAR MENU (Safe Null Fetch)
+// Setelah categoryId didapatkan, otomatis API Menu akan menembak data yang sesuai.
+const { data: menuResponse, pending: pendingMenu } = useFetch(
+  () => categoryId.value ? `${baseURL}/menus/category/${categoryId.value}` : null,
+  {
+    lazy: import.meta.client,
+  }
 );
 const menus = computed(() => menuResponse.value?.data || []);
 
-// 2. Fetch data nama kategori secara paralel untuk judul banner
-const { data: categoryResponse } = useFetch(`${baseURL}/categories`, {
-  lazy: import.meta.client,
-});
-const currentCategoryName = computed(() => {
-  const cats = categoryResponse.value?.data || [];
-  const found = cats.find((c) => c.id == categoryId);
-  return found ? found.name : "Daftar Menu";
-});
+// Gabungkan status loading
+const pending = computed(() => pendingCat.value || pendingMenu.value);
 
-// 3. Manajemen Modal
+// 3. MANAJEMEN MODAL
 const isModalOpen = ref(false);
 const selectedMenu = ref(null);
 
@@ -489,7 +538,6 @@ const openModal = (menu) => {
 
 const closeModal = () => {
   isModalOpen.value = false;
-  // Sedikit jeda sebelum menghapus data agar animasi penutupan modal (jika ada) tidak kehilangan data secara instan
   setTimeout(() => {
     selectedMenu.value = null;
   }, 200);
