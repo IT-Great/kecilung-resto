@@ -415,6 +415,14 @@ watchEffect(() => {
   }
 });
 
+// TAMBAHKAN watcher ini untuk mendengarkan perubahan data API
+watchEffect(() => {
+  if (momentData.value?.id) {
+    // Saat data dari Backend sudah turun, tembakkan ID aslinya (angka) ke form
+    form.value.moment_id = momentData.value.id; 
+  }
+});
+
 // Manajemen Modal dan Form
 const showModal = ref(false);
 const isSubmitting = ref(false);
@@ -428,7 +436,8 @@ const form = ref({
   member_count: 1,
   booking_date: "",
   booking_end_date: "",
-  moment_id: parseInt(route.params.id),
+  // moment_id: parseInt(route.params.id),
+  moment_id: null, // <-- Kosongkan Dulu
 });
 
 const submitBooking = async () => {

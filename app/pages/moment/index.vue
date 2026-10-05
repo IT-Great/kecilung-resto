@@ -148,10 +148,16 @@ const moments = computed(() => res.value?.data || []);
       <!-- Grid Daftar Moment -->
       <div v-else class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
         <!-- Kartu yang bisa diklik -->
-        <NuxtLink
+        <!-- <NuxtLink
           v-for="mom in moments"
           :key="mom.id"
           :to="`/moment/${mom.id}`"
+          class="bg-white rounded-2xl shadow-md overflow-hidden group hover:shadow-2xl transition-all duration-300 transform hover:-translate-y-1 flex flex-col"
+        > -->
+        <NuxtLink
+          v-for="mom in moments"
+          :key="mom.id"
+          :to="`/moment/${mom.slug}`" 
           class="bg-white rounded-2xl shadow-md overflow-hidden group hover:shadow-2xl transition-all duration-300 transform hover:-translate-y-1 flex flex-col"
         >
           <!-- Thumbnail Gambar -->
