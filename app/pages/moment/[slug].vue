@@ -382,6 +382,106 @@ const submitBooking = async () => {
 </template>
 
 <script setup>
+// import Swal from "sweetalert2";
+// import { ref, computed, watchEffect } from "vue";
+// import { useRoute } from "vue-router";
+
+// const route = useRoute();
+// const baseURL = "https://back.kecilungresto.com/api";
+
+// // Fetch data moment utama
+// const { data: res, pending } = useFetch(
+//   `${baseURL}/moments/packages/${route.params.id}`,
+//   {
+//     lazy: import.meta.client,
+//   },
+// );
+// const momentData = computed(() => res.value?.data);
+
+// // Fetch data booking yang sudah APPROVED khusus untuk paket Moment ini
+// // const { data: approvedRes, refresh: refreshBookings } = useFetch(
+// //   `${baseURL}/moments/packages/${route.params.id}/bookings`,
+// //   {
+// //     lazy: import.meta.client,
+// //   },
+// // );
+
+// const { data: approvedRes, refresh: refreshBookings } = useFetch(
+//   // Panggil URL baru dan tembakkan ID yang sudah ditangkap di dalam watcher form (bukan route.params.id lagi karena itu huruf)
+//   () => `${baseURL}/moments/bookings/approved/${form.value.moment_id}`,
+//   { lazy: import.meta.client }
+// );
+
+// const approvedBookings = computed(() => approvedRes.value?.data || []);
+
+// // Manajemen Gambar Aktif di Galeri
+// const activeImage = ref("");
+// watchEffect(() => {
+//   if (momentData.value?.images && momentData.value.images.length > 0) {
+//     activeImage.value = momentData.value.images[0].image_url;
+//   }
+// });
+
+// // TAMBAHKAN watcher ini untuk mendengarkan perubahan data API
+// watchEffect(() => {
+//   if (momentData.value?.id) {
+//     // Saat data dari Backend sudah turun, tembakkan ID aslinya (angka) ke form
+//     form.value.moment_id = momentData.value.id;
+//   }
+// });
+
+// // Manajemen Modal dan Form
+// const showModal = ref(false);
+// const isSubmitting = ref(false);
+// const openBookingModal = () => (showModal.value = true);
+
+// // Binding form dengan moment_id
+// const form = ref({
+//   customer_name: "",
+//   phone: "",
+//   description: "",
+//   member_count: 1,
+//   booking_date: "",
+//   booking_end_date: "",
+//   // moment_id: parseInt(route.params.id),
+//   moment_id: null, // <-- Kosongkan Dulu
+// });
+
+// const submitBooking = async () => {
+//   isSubmitting.value = true;
+//   try {
+//     // Ubah format tanggal ke ISO untuk GORM Go
+//     const payload = {
+//       ...form.value,
+//       booking_date: new Date(form.value.booking_date).toISOString(),
+//       booking_end_date: new Date(form.value.booking_end_date).toISOString(),
+//     };
+
+//     // Request POST ke Backend. Jika tabrakan, Backend otomatis kirim Error (Catch)
+//     await $fetch(`${baseURL}/moments/bookings`, {
+//       method: "POST",
+//       body: payload,
+//     });
+
+//     showModal.value = false;
+//     Swal.fire(
+//       "Berhasil!",
+//       "Reservasi Anda telah diajukan tanpa tabrakan jadwal. Admin kami akan segera menghubungi Anda melalui WhatsApp untuk konfirmasi.",
+//       "success",
+//     );
+//     refreshBookings(); // Update list jadwal terisi secara otomatis tanpa reload halaman
+//   } catch (err) {
+//     // Pesan tabrakan dari Golang akan muncul di sini (misal: "Mohon maaf, jadwal pada waktu tersebut bertabrakan...")
+//     Swal.fire(
+//       "Jadwal Tidak Tersedia",
+//       err.response?._data?.error || "Gagal melakukan reservasi.",
+//       "error",
+//     );
+//   } finally {
+//     isSubmitting.value = false;
+//   }
+// };
+
 import Swal from "sweetalert2";
 import { ref, computed, watchEffect } from "vue";
 import { useRoute } from "vue-router";
@@ -389,53 +489,9 @@ import { useRoute } from "vue-router";
 const route = useRoute();
 const baseURL = "https://back.kecilungresto.com/api";
 
-// Fetch data moment utama
-const { data: res, pending } = useFetch(
-  `${baseURL}/moments/packages/${route.params.id}`,
-  {
-    lazy: import.meta.client,
-  },
-);
-const momentData = computed(() => res.value?.data);
-
-// Fetch data booking yang sudah APPROVED khusus untuk paket Moment ini
-// const { data: approvedRes, refresh: refreshBookings } = useFetch(
-//   `${baseURL}/moments/packages/${route.params.id}/bookings`,
-//   {
-//     lazy: import.meta.client,
-//   },
-// );
-
-const { data: approvedRes, refresh: refreshBookings } = useFetch(
-  // Panggil URL baru dan tembakkan ID yang sudah ditangkap di dalam watcher form (bukan route.params.id lagi karena itu huruf)
-  () => `${baseURL}/moments/bookings/approved/${form.value.moment_id}`, 
-  { lazy: import.meta.client }
-);
-
-const approvedBookings = computed(() => approvedRes.value?.data || []);
-
-// Manajemen Gambar Aktif di Galeri
-const activeImage = ref("");
-watchEffect(() => {
-  if (momentData.value?.images && momentData.value.images.length > 0) {
-    activeImage.value = momentData.value.images[0].image_url;
-  }
-});
-
-// TAMBAHKAN watcher ini untuk mendengarkan perubahan data API
-watchEffect(() => {
-  if (momentData.value?.id) {
-    // Saat data dari Backend sudah turun, tembakkan ID aslinya (angka) ke form
-    form.value.moment_id = momentData.value.id; 
-  }
-});
-
-// Manajemen Modal dan Form
-const showModal = ref(false);
-const isSubmitting = ref(false);
-const openBookingModal = () => (showModal.value = true);
-
-// Binding form dengan moment_id
+// ==========================================
+// 1. DEKLARASI STATE & FORM DULUAN
+// ==========================================
 const form = ref({
   customer_name: "",
   phone: "",
@@ -443,21 +499,68 @@ const form = ref({
   member_count: 1,
   booking_date: "",
   booking_end_date: "",
-  // moment_id: parseInt(route.params.id),
-  moment_id: null, // <-- Kosongkan Dulu
+  moment_id: null,
 });
 
+const activeImage = ref("");
+const showModal = ref(false);
+const isSubmitting = ref(false);
+
+const openBookingModal = () => (showModal.value = true);
+
+// ==========================================
+// 2. FETCH DATA MOMENT (Menggunakan SLUG)
+// ==========================================
+// Pastikan parameter menangkap "slug" dari nama file [slug].vue
+const { data: res, pending } = useFetch(
+  `${baseURL}/moments/packages/${route.params.slug}`,
+  {
+    lazy: import.meta.client,
+  }
+);
+const momentData = computed(() => res.value?.data);
+
+// ==========================================
+// 3. WATCHER (Mengisi data saat respon API tiba)
+// ==========================================
+watchEffect(() => {
+  if (momentData.value) {
+    // 3a. Isi form.moment_id dengan ID asli (angka) dari backend
+    form.value.moment_id = momentData.value.id;
+
+    // 3b. Set gambar default jika ada
+    if (momentData.value.images && momentData.value.images.length > 0) {
+      if (!activeImage.value) {
+        activeImage.value = momentData.value.images[0].image_url;
+      }
+    }
+  }
+});
+
+// ==========================================
+// 4. FETCH DATA JADWAL BOOKING
+// ==========================================
+// Gunakan kondisi: Jika moment_id belum ada, jangan fetch dulu (kembalikan null)
+const { data: approvedRes, refresh: refreshBookings } = useFetch(
+  () => form.value.moment_id ? `${baseURL}/moments/bookings/approved/${form.value.moment_id}` : null,
+  {
+    lazy: import.meta.client,
+  }
+);
+const approvedBookings = computed(() => approvedRes.value?.data || []);
+
+// ==========================================
+// 5. FUNGSI SUBMIT FORM
+// ==========================================
 const submitBooking = async () => {
   isSubmitting.value = true;
   try {
-    // Ubah format tanggal ke ISO untuk GORM Go
     const payload = {
       ...form.value,
       booking_date: new Date(form.value.booking_date).toISOString(),
       booking_end_date: new Date(form.value.booking_end_date).toISOString(),
     };
 
-    // Request POST ke Backend. Jika tabrakan, Backend otomatis kirim Error (Catch)
     await $fetch(`${baseURL}/moments/bookings`, {
       method: "POST",
       body: payload,
@@ -467,15 +570,14 @@ const submitBooking = async () => {
     Swal.fire(
       "Berhasil!",
       "Reservasi Anda telah diajukan tanpa tabrakan jadwal. Admin kami akan segera menghubungi Anda melalui WhatsApp untuk konfirmasi.",
-      "success",
+      "success"
     );
-    refreshBookings(); // Update list jadwal terisi secara otomatis tanpa reload halaman
+    refreshBookings(); // Update list otomatis
   } catch (err) {
-    // Pesan tabrakan dari Golang akan muncul di sini (misal: "Mohon maaf, jadwal pada waktu tersebut bertabrakan...")
     Swal.fire(
       "Jadwal Tidak Tersedia",
       err.response?._data?.error || "Gagal melakukan reservasi.",
-      "error",
+      "error"
     );
   } finally {
     isSubmitting.value = false;
